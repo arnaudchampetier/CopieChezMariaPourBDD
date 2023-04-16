@@ -9,7 +9,7 @@ const Map = () => {
   });
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDIrIYUw3d_dSdQsmFx9dlO6KKEmk32Vsc",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   });
 
   const onLoad = (map) => {
