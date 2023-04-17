@@ -1,54 +1,32 @@
-import React, { useState } from "react";
-import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import L from "leaflet";
+import markerIcon from "./assets/marker.png";
+import "leaflet/dist/leaflet.css";
 
 const Map = () => {
-  const [map, setMap] = useState(null);
-  const [markerPosition, setMarkerPosition] = useState({
-    lat: 45.767735,
-    lng: 4.855177,
+  const position = [45.767735, 4.855177];
+
+  const icon = new L.Icon({
+    iconUrl: markerIcon,
+    iconRetinaUrl: markerIcon,
+    iconSize: [50, 50],
+    iconAnchor: [25, 50],
+    popupAnchor: [0, -50],
   });
-
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-  });
-
-  const onLoad = (map) => {
-    setMap(map);
-    setMarkerPosition({ lat: 45.767735, lng: 4.855177 });
-    console.log("Map loaded successfully");
-  };
-
-  if (!isLoaded) return <div>Loading...</div>;
-
-  const markerOptions = {
-    url: "./assets/images/marker.png",
-    scaledSize: new window.google.maps.Size(50, 50),
-  };
-
-  console.log("markerPosition", markerPosition);
-  console.log("markerOptions", markerOptions);
-  console.log("map", map);
 
   return (
-    <div style={{ width: "100%", height: "500px" }}>
-      <GoogleMap
-        mapContainerStyle={{
-          width: "100%",
-          height: "500px",
-        }}
-        center={markerPosition}
-        zoom={16}
-        onLoad={onLoad}
-      >
-        {map && (
-          <MarkerF
-            key={new Date().getTime()}
-            title="My position"
-            position={markerPosition}
-            icon={markerOptions}
-          />
-        )}
-      </GoogleMap>
+    <div className="w-full h-96 relative rounded-xl mb-44 md:mb-44">
+      <MapContainer center={position} zoom={16} className="w-full h-full">
+        <TileLayer
+          attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={position} icon={icon}>
+          <Popup>
+            21 cours Vitton <br /> 69006 Lyon
+          </Popup>
+        </Marker>
+      </MapContainer>
     </div>
   );
 };
