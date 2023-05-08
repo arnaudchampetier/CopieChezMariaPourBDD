@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.bg-navbar {
+  background-image: url('./assets/bandeaumaria.png');
+  background-size: cover;
+  ; /* ajustez en fonction de votre design */
+}
+
