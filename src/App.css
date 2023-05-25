@@ -43,4 +43,23 @@
   ; /* ajustez en fonction de votre design */
 }
 
+@media (max-width: 400px) {
+  .custom-sm-text {
+    font-size: 0.875rem; /* Correspond à la taille de police "sm" */
+  }
+}
+
+@media (max-width: 423px) {
+  .custom-image {
+    object-fit: contain;
+  }
+}
+
+@media (min-width: 424px) {
+  .custom-image {
+    object-fit: cover;
+  }
+}
+
+
 

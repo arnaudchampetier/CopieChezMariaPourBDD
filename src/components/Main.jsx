@@ -21,7 +21,7 @@ function Main() {
           </h1>
 
           <div className="flex h-1/4 md:h-min-1/3 items-center justify-center cursor-pointer ">
-            <div className="group h-96  w-80 [perspective:1000px] md:mr-48 mr-4">
+            <div className="group h-96  w-80 [perspective:1000px] mr-4 md:mr-12 ">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="absolute inset-0">
                   <img
@@ -49,11 +49,11 @@ function Main() {
                 </div>
               </div>
             </div>
-            <div className="group h-96  w-80 [perspective:1000px] md:mr-48 mr-4 ">
+            <div className="group h-96  w-80 [perspective:1000px] mr-4  md:mr-12 ">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-1000 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="absolute inset-0">
                   <img
-                    className="h-full w-full rounded-xl object-cover shadow-xl shadow-black/40"
+                    className="h-full w-full rounded-xl  object-cover shadow-xl shadow-black/40  "
                     src={Front}
                     alt=""
                   />
@@ -116,7 +116,7 @@ function Main() {
           </h1>
           <div
             id="epicerie"
-            className=" flex flex-col  items-center mx-auto border border-gray-200 rounded-lg shadow md:flex-row lg:w-3/4 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer hover:opacity-90 transition duration-500 ease-in-out"
+            className=" flex flex-col mx-auto border border-gray-200 rounded-lg shadow md:flex-row lg:w-3/4 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer hover:opacity-90 transition duration-500 ease-in-out"
           >
             <img
               className="object-cover w-full rounded-t-lg h-96 md:h-96 md:w-48 md:rounded-none md:rounded-l-lg lg:h-142 lg:w-142 "
@@ -124,10 +124,10 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start bg-navbar  lg:h-142 ">
-              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-2xl font-semplicita font-bold tracking-tight text-gray-900 dark:text-white ">
+              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-2xl font-semplicita font-bold tracking-tight text-black  ">
                 Epicerie Fine{" "}
               </h5>
-              <p className="mb-3 font-semplicita text-gray-900 dark:text-gray-400 font-semibold">
+              <p className="mb-3 font-semplicita text-black  font-semibold">
                 Vous retrouverez ici le meilleur de la gastronomie ardéchoise.{" "}
                 <br />
                 <br />A travers une multitude de produits proposés, à l’instar
@@ -156,10 +156,10 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start ">
-              <h5 className="lg:mb-28 mb-8 text-2xl font-semplicita font-bold tracking-tight text-gray-900 dark:text-white ">
+              <h5 className="lg:mb-28 mb-8 text-2xl font-semplicita font-bold tracking-tight text-black  ">
                 Traiteur{" "}
               </h5>
-              <p className="mb-3 font-semplicita text-gray-900 dark:text-gray-400 font-semibold">
+              <p className="mb-3 font-semplicita text-black  font-semibold">
                 Nous vous proposons de découvrir à travers nos produits frais le
                 savoir-faire ancestral de nos producteurs, auprès desquels nous
                 nous fournissons directement.
@@ -188,10 +188,10 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start ">
-              <h5 className="lg:mb-28 mb-8 text-2xl font-semplicita font-bold tracking-tight text-gray-900 dark:text-white ">
+              <h5 className="lg:mb-28 mb-8 text-2xl font-semplicita font-bold tracking-tight text-black  ">
                 Petite restauration{" "}
               </h5>
-              <p className="mb-3 font-semplicita text-gray-900 dark:text-gray-400 font-semibold">
+              <p className="mb-3 font-semplicita text-black font-semibold">
                 Pour la pause du midi, nous confectionnons de généreux sandwichs
                 fermiers et salades en utilisant les produits frais que nous
                 avons à notre disposition, au gré des saisons et de nos
@@ -215,7 +215,7 @@ function Main() {
           </h1>
           <div
             id="salon"
-            className=" mt-24 lg:mt-56 bg-navbar flex flex-col  items-center mx-auto border border-gray-200 rounded-lg shadow md:flex-row lg:w-3/4 hover:bg-red-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer hover:opacity-90 transition duration-500 ease-in-out"
+            className=" mt-24 lg:mt-32 bg-navbar flex flex-col  items-center mx-auto border border-gray-200 rounded-lg shadow md:flex-row lg:w-3/4 hover:bg-red-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer hover:opacity-90 transition duration-500 ease-in-out"
           >
             <img
               className="object-cover w-full rounded-t-lg h-96 md:h-96 md:w-48 md:rounded-none md:rounded-l-lg lg:h-142 lg:w-142"
@@ -223,10 +223,10 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start ">
-              <h5 className="lg:mb-28 mb-8 text-2xl font-semplicita font-bold tracking-tight text-gray-900 dark:text-white ">
+              <h5 className="lg:mb-28 mb-8 text-2xl font-semplicita font-bold tracking-tight text-black  ">
                 Salon de Maria{" "}
               </h5>
-              <p className="mb-3 font-semplicita text-gray-900 dark:text-gray-400 font-semibold">
+              <p className="mb-3 font-semplicita text-black  font-semibold">
                 Venez profitez d’une pause gourmande dans le salon de Maria à
                 toute heure de la journée, et découvrez nos sélections de thés,
                 cafés et autres boissons artisanales

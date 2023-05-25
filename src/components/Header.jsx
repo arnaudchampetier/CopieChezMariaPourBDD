@@ -12,11 +12,11 @@ function Header() {
             <img
               src={Logo}
               alt="Logo de l'épicerie ardéchoise"
-              className="h-36 md:h-56 w-32 md:w-52 rounded-xl mx-auto hover:scale-105 transition-all duration-1000 "
+              className="h-36 md:h-56 w-32 md:w-48 rounded-xl mx-auto hover:scale-105 transition-all duration-1000 "
             />
           </div>
-          <nav className=" mt-4 md:mt-0 sm:mx-4  ">
-            <ul className="h-12  cursor-pointer flex flex-row  justify-center space-x-6 lg:space-x-56 text-gray-800 text-sm md:uppercase font-semplicita font-bold tracking-wider ">
+          <nav className=" mt-4 md:mt-0 sm:mx-4 mb-2 ">
+            <ul className="h-12  cursor-pointer flex flex-row  justify-center space-x-3 lg:space-x-56 text-black text-md md:text-xl font-semplicita font-bold tracking-wider ">
               <li>
                 <Link
                   activeClass="active"
@@ -25,10 +25,14 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:underline hover:text-white transition duration-300  "
+                  className=" hover:text-black transition duration-300  "
                 >
-                  <span className="hidden md:block  ">Epicerie fine</span>
-                  <span className="md:hidden ">Epicerie</span>
+                  <span className="hidden 2xl:block rounded-full bg-red-100  hover:scale-105 transition duration-1000 p-4 border-2 border-black shadow-xl  ">
+                    Epicerie fine
+                  </span>
+                  <span className="2xl:hidden rounded-xl custom-sm-text  bg-red-100  hover:scale-105 transition duration-1000 p-2 border-2 border-black shadow-lg  ">
+                    Epicerie
+                  </span>
                 </Link>
               </li>
               <li>
@@ -39,10 +43,14 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:underline hover:text-white transition duration-300"
+                  className=" hover:text-black transition duration-300  "
                 >
-                  <span className="hidden md:block">Traiteur</span>
-                  <span className="md:hidden">Traiteur</span>
+                  <span className="hidden 2xl:block rounded-full bg-red-100  hover:scale-105 transition duration-1000 p-4 border-2 border-black shadow-xl  ">
+                    Traiteur
+                  </span>
+                  <span className="2xl:hidden rounded-xl custom-sm-text bg-red-100 hover:scale-105 transition duration-1000 p-2 border-2 border-black  shadow-lg ">
+                    Traiteur
+                  </span>
                 </Link>
               </li>
               <li>
@@ -53,10 +61,14 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:underline hover:text-white transition duration-300"
+                  className=" hover:text-black transition duration-300  "
                 >
-                  <span className="hidden md:block">Petite restauration</span>
-                  <span className="md:hidden">Restauration</span>
+                  <span className="hidden 2xl:block rounded-full bg-red-100  hover:scale-105 transition duration-1000 p-4 border-2 border-black  shadow-xl  ">
+                    Petite restauration
+                  </span>
+                  <span className="2xl:hidden rounded-xl custom-sm-text bg-red-100  hover:scale-105 transition duration-1000 p-2 border-2 border-black  shadow-lg ">
+                    Restauration
+                  </span>
                 </Link>
               </li>
               <li>
@@ -67,10 +79,14 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:underline hover:text-white transition duration-300"
+                  className=" hover:text-black transition duration-300  "
                 >
-                  <span className="hidden md:block">Salon chez Maria</span>
-                  <span className="md:hidden">Salon</span>
+                  <span className="hidden 2xl:block rounded-full bg-red-100  hover:scale-105 transition duration-1000 p-4 border-2 border-black  shadow-xl  ">
+                    Salon chez Maria
+                  </span>
+                  <span className="2xl:hidden rounded-xl custom-sm-text bg-red-100  hover:scale-105 transition duration-1000 p-2 border-2 border-black  shadow-lg ">
+                    Salon
+                  </span>
                 </Link>
               </li>
             </ul>

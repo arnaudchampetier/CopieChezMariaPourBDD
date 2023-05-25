@@ -12,8 +12,8 @@ function Footer() {
         <p>
           21 Cours Vitton <br /> 69006 Lyon <br />
           TEL : 04 76 71 67 54 <br />
-          Lundi au samedi : 10h30 – 19h30 <br />
-          Dimanche : fermée
+          Lundi au Samedi : 10h30 – 19h30 <br />
+          Dimanche : fermé
         </p>
         <p>© 2023 Chez Maria - Lyon</p>
         <Link to="/mentionslegales" className="text-gray-300">
