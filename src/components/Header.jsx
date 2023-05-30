@@ -110,7 +110,7 @@ function Header() {
                   duration={1500}
                 >
                   <img
-                    className="h-18 w-18 2xl:h-16 2xl:w-16 xl:h-14 xl:w-14 lg:h-12 lg:w-12 md:h-10 md:w-10  sm:h-6 sm:w-6  lg:-mt-2 xl:-mt-2 cursor-pointer hover:scale-110 sm:-mt-2 md:-mt-2   2xl:-mt-4"
+                    className="h-18 w-18 2xl:h-20 2xl:w-20 xl:h-14 xl:w-14 lg:h-12 lg:w-12 md:h-10 md:w-10  sm:h-6 sm:w-6  lg:-mt-2 xl:-mt-2 cursor-pointer hover:scale-110 sm:-mt-2 md:-mt-2   2xl:-mt-4"
                     src={BackHome}
                     alt="Scroll to bottom"
                   />
@@ -151,11 +151,11 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:text-black transition duration-300"
+                  className="hover:text-black hover:text-2xl transition duration-300"
                   onClick={() => handleClick("traiteur")}
                 >
                   <span
-                    className={`hidden 2xl:block uppercase relative cursor-pointer transition-all duration-500 before:content-[''] before:absolute before:bottom-[-26px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100 ${
+                    className={`hidden 2xl:block hover:scale-105  uppercase relative cursor-pointer transition-all duration-500 before:content-[''] before:absolute before:bottom-[-26px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100 ${
                       activeItem === "traiteur" ? "traiteur active" : ""
                     }`}
                   >
@@ -182,11 +182,11 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:text-black transition duration-300"
+                  className="hover:text-black hover:text-2xl transition duration-300"
                   onClick={() => handleClick("petiterestauration")}
                 >
                   <span
-                    className={`hidden 2xl:block uppercase relative cursor-pointer transition-all duration-500 before:content-[''] before:absolute before:bottom-[-26px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100 ${
+                    className={`hidden 2xl:block hover:scale-105  uppercase relative cursor-pointer transition-all duration-500 before:content-[''] before:absolute before:bottom-[-26px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100 ${
                       activeItem === "petiterestauration"
                         ? "petiterestauration active"
                         : ""
@@ -213,11 +213,11 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:text-black transition duration-300"
+                  className="hover:text-black hover:text-2xl transition duration-300"
                   onClick={() => handleClick("salon")}
                 >
                   <span
-                    className={`hidden 2xl:block uppercase relative cursor-pointer transition-all duration-500 before:content-[''] before:absolute before:bottom-[-26px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100 ${
+                    className={`hidden 2xl:block hover:scale-105  uppercase relative cursor-pointer transition-all duration-500 before:content-[''] before:absolute before:bottom-[-26px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100 ${
                       activeItem === "salon" ? "salon active" : ""
                     }`}
                   >
