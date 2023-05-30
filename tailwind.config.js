@@ -11,7 +11,8 @@ module.exports = {
       fontFamily: {
         sans: ["Chivo Mono", "monospace"],
         cinzel: ["Cinzel", "serif"],
-        semplicita: ["Semplicita Bold", "sans-serif"],
+        semplicita: ["Semplicita medium", "sans-serif"],
+        larken: ["Larken Bold", "sans-serif"],
       },
     },
   },

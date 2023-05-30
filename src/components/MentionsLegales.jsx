@@ -4,14 +4,19 @@ import Home from "../assets/home.png";
 
 function MentionsLegales() {
   return (
-    <div className="w-screen h-screen bg-red-100 flex flex-col items-center justify-center mx-auto p-6 text-gray-600">
+    <div
+      id="mentionslegales"
+      className="w-screen h-screen bg-red-100 flex flex-col items-center justify-center mx-auto p-6 text-gray-600"
+    >
       <Link to="/" className="text-white flex items-center flex-col space-y-4 ">
         <img src={Home} alt="Accueil" className=" h-12 w-12 " />
-        <p className="text-gray-600">Retour au site</p>
+        <p className="text-gray-600 text-xl font-larken">Retour au site</p>
       </Link>
       <div className="max-w-lg h-full overflow-auto">
-        <h1 className="text-3xl mt-12 text-center">Mentions Légales</h1>
-        <div className="mt-8  ">
+        <h1 className="text-3xl mt-12 text-center font-larken">
+          Mentions Légales
+        </h1>
+        <div className="mt-8 font-semplicita ">
           <p className="text-md">
             <span className="font-bold">Concept et production :</span>
             <span className="italic">

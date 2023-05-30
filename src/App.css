@@ -40,7 +40,7 @@
 .bg-navbar {
   background-image: url('./assets/bandeaumaria.png');
   background-size: cover;
-  ; /* ajustez en fonction de votre design */
+  transition: background-color 0.5s ease; /* Ajout de la transition pour la couleur de fond */
 }
 
 @media (max-width: 400px) {
@@ -60,6 +60,97 @@
     object-fit: cover;
   }
 }
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: #ece7ebee;
+  transition: background-color 1s ease; /* Ajout de la transition pour la couleur de fond */
+  border-top: 1px solid hsl(0, 6%, 10%);
+  border-bottom: 1px solid hsl(0, 6%, 10%);
+}
+
+.sticky-compense {
+  
+  height: calc(5% + 3rem); /* Ajustez la hauteur selon vos besoins */
+  margin-top: 0rem; /* Compense le décalage négatif causé par la hauteur supplémentaire */
+  margin-left: -1rem;
+}
+
+
+
+span.active {
+  font-weight: bold;
+  border-bottom: 5px solid rgb(116, 119, 129);
+  padding-bottom: 10px;
+  border-radius: 0; /* Ajout de la propriété border-radius */
+
+  transition: all 0.5s ease;
+}
+
+/* Point de rupture pour les écrans de taille "xl" */
+@media (min-width: 1280px) {
+  span.active {
+    font-size: 22px;
+    color: rgb(30, 31, 34);
+  }
+}
+
+/* Point de rupture pour les écrans de taille "lg" */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  span.active {
+    font-size: 20px;
+    color: rgb(30, 31, 34);
+  }
+}
+
+/* Point de rupture pour les écrans de taille "md" */
+@media (min-width: 768px) and (max-width: 1023px) {
+  span.active {
+    font-size: 18px;
+    color: rgb(30, 31, 34);
+  }
+}
+
+/* Point de rupture pour les écrans de taille "sm" */
+@media (min-width: 640px) and (max-width: 767px) {
+  span.active {
+    font-size: 16px;
+    color: rgb(30, 31, 34);
+  }
+}
+
+/* Point de rupture pour les écrans de taille "xs" */
+@media (max-width: 639px) {
+  span.active {
+    font-size: 14px;
+    color: rgb(30, 31, 34);
+  }
+}
+
+@media (min-width: 640px) {
+  .hide-on-sm {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

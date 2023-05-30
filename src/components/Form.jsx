@@ -33,20 +33,20 @@ function Form() {
   return (
     <>
       {" "}
-      <div className="bg-red-100 font-semplicita">
+      <div className="bg-red-100 ">
         <form
           ref={form}
           onSubmit={sendEmail}
           className="bg-red-100 shadow-md rounded px-8 pt-6 pb-8 mb-0 md:w-1/2 md:mx-auto "
           id="contact"
         >
-          <h1 className="text-xl text-center my-4">
+          <h1 className="text-xl text-center my-4 font-larken">
             Une demande particulière ?
           </h1>
           <img src={doodle} alt="" className="p-6 h-52 md:h-48 mx-auto" />
           <div className="mb-4">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-semplicita mb-2"
               htmlFor="name"
             >
               Nom
@@ -63,7 +63,7 @@ function Form() {
           </div>
           <div className="mb-4">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-semplicita mb-2"
               htmlFor="email"
             >
               Adresse e-mail
@@ -80,7 +80,7 @@ function Form() {
           </div>
           <div className="mb-4">
             <label
-              className="block text-gray-700 font-bold mb-2"
+              className="block text-gray-700 font-semplicita mb-2"
               htmlFor="message"
             >
               Message
@@ -95,7 +95,7 @@ function Form() {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto"
+              className="bg-gray-700 hover:bg-gray-900 text-white font-larken py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto"
               type="submit"
             >
               Envoyer

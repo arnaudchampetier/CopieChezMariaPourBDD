@@ -9,6 +9,7 @@ import FindUs from "./components/FindUs";
 import Footer from "./components/Footer";
 import Form from "./components/Form";
 import MentionsLegales from "./components/MentionsLegales";
+import BackHomeImage from "./components/BackHomeImage";
 
 function Home() {
   return (
@@ -20,6 +21,10 @@ function Home() {
             path="/"
             element={
               <div>
+                <div className="hide-on-sm">
+                  {" "}
+                  <BackHomeImage />
+                </div>
                 <ContactLinkImage />
                 <Main />
                 <FindUs />

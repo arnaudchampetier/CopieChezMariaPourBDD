@@ -10,7 +10,7 @@ function FindUs() {
       <div className="flex flex-col md:flex-row mx-auto md:gap-48 bg-red-200 ">
         <div className="w-full mx-auto md:w-1/3 mb-8 md:mb-0">
           <div className="w-full h-96 relative rounded-xl mb-12 md:mb-24">
-            <h2 className="text-lg md:text-3xl font-semplicita mb-4 mt-4 text-center">
+            <h2 className="text-lg md:text-3xl font-larken mb-4 mt-4 text-center">
               Nous trouver :{" "}
             </h2>
 
@@ -22,7 +22,7 @@ function FindUs() {
           className="w-full md:w-1/3 h-1/3 md:h-1/3 mx-auto md:py-12 rounded-xl mt-4 md:mt-8 overflow-hidden shadow-lg mb-4 md:mb-12 flex items-center bg-red-100"
         >
           <div className="md:w-96 flex-col text-center mx-auto">
-            <h2 className="text-lg md:text-3xl font-semplicita mb-8 md:mb-8  ">
+            <h2 className="text-lg md:text-3xl font-larken mb-8 md:mb-8  ">
               Contact :
             </h2>
             <p className="text-gray-700 text-sm md:text-2xl font-semplicita">

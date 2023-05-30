@@ -8,7 +8,7 @@ function Footer() {
         className="bg-red-900 text-white text-center py-4 font-semplicita"
         id="footer"
       >
-        <h1 className="text-xl">Contact</h1>
+        <h1 className="text-xl font-larken">Contact</h1>
         <p>
           21 Cours Vitton <br /> 69006 Lyon <br />
           TEL : 04 76 71 67 54 <br />

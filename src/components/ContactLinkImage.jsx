@@ -10,10 +10,10 @@ function ContactLinkImage() {
         className="fixed bottom-4 right-4 p-2  rounded-full text-white hover:scale-105 transition-all duration-300  z-50"
         to="contact"
         smooth={true}
-        duration={2000}
+        duration={1500}
       >
         <img
-          className="h-16 w-16 lg:w-32 lg:h-32 cursor-pointer relative"
+          className="h-12 w-12 lg:w-24 lg:h-24 cursor-pointer relative"
           src={contact}
           alt="Scroll to bottom "
         />
