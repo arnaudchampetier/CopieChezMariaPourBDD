@@ -151,7 +151,14 @@ function Header() {
                   </span>
                 </Link>
               </li>
-              <li className={`${activeItem === "traiteur" ? "active" : ""}`}>
+              <li
+                className={`hidden xl:block  uppercase relative cursor-pointer transition-all duration-500
+                     before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
+                     before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                      before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
+                        activeItem === "traiteur" ? "active" : ""
+                      }`}
+              >
                 <Link
                   activeClass="active"
                   to="traiteur"
@@ -163,14 +170,14 @@ function Header() {
                   onClick={() => handleClick("traiteur")}
                 >
                   <span
-                    className={`hidden 2xl:block hover:scale-105  uppercase relative cursor-pointer transition-all duration-500 before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100 ${
+                    className={` ${
                       activeItem === "traiteur" ? "traiteur active" : ""
                     }`}
                   >
                     Traiteur{" "}
                   </span>
                   <span
-                    className={`2xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
+                    className={`xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
                       activeItem === "traiteur" ? "traiteur active" : ""
                     }`}
                   >
@@ -179,9 +186,12 @@ function Header() {
                 </Link>
               </li>
               <li
-                className={`${
-                  activeItem === "petiterestauration" ? "active" : ""
-                }`}
+                className={`hidden xl:block  uppercase relative cursor-pointer transition-all duration-500
+                before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
+                before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
+                   activeItem === "petiterestauration" ? "active" : ""
+                 }`}
               >
                 <Link
                   activeClass="active"
@@ -194,7 +204,7 @@ function Header() {
                   onClick={() => handleClick("petiterestauration")}
                 >
                   <span
-                    className={`hidden 2xl:block hover:scale-105  uppercase relative cursor-pointer transition-all duration-500 before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100 ${
+                    className={` ${
                       activeItem === "petiterestauration"
                         ? "petiterestauration active"
                         : ""
@@ -203,7 +213,7 @@ function Header() {
                     Petite restauration{" "}
                   </span>
                   <span
-                    className={`2xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
+                    className={`xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
                       activeItem === "petiterestauration"
                         ? "petiterestauration active"
                         : ""
@@ -213,7 +223,14 @@ function Header() {
                   </span>
                 </Link>
               </li>
-              <li className={`${activeItem === "salon" ? "active" : ""}`}>
+              <li
+                className={`hidden xl:block  uppercase relative cursor-pointer transition-all duration-500
+                     before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
+                     before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                      before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
+                        activeItem === "salon" ? "active" : ""
+                      }`}
+              >
                 <Link
                   activeClass="active"
                   to="salon"
@@ -225,14 +242,14 @@ function Header() {
                   onClick={() => handleClick("salon")}
                 >
                   <span
-                    className={`hidden 2xl:block hover:scale-105  uppercase relative cursor-pointer transition-all duration-500 before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100 ${
+                    className={` ${
                       activeItem === "salon" ? "salon active" : ""
                     }`}
                   >
                     Salon Chez Maria
                   </span>
                   <span
-                    className={`2xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
+                    className={`xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
                       activeItem === "salon" ? "salon active" : ""
                     }`}
                   >
