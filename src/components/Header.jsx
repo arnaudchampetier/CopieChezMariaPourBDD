@@ -143,7 +143,7 @@ function Header() {
                     Epicerie fine
                   </span>
                   <span
-                    className={`2xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
+                    className={`xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
                       activeItem === "epicerie" ? "epicerie-fine active" : ""
                     }`}
                   >
