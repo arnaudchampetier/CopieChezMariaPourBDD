@@ -153,8 +153,8 @@ function Header() {
               </li>
               <li
                 className={` uppercase relative cursor-pointer transition-all duration-500
-                before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
-                before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                before:content-[''] before:absolute before:bottom-[5px] before:left-1/2 before:-translate-x-1/2 
+                before:w-0 before:h-0.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
                  before:bg-gradient-to-r before:from-black before:via-black before:to-black hover:before:w-full hover:before:opacity-100${
                    activeItem === "traiteur" ? "active" : ""
                  }`}
@@ -187,8 +187,8 @@ function Header() {
               </li>
               <li
                 className={` uppercase relative cursor-pointer transition-all duration-500
-                before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
-                before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                before:content-[''] before:absolute before:bottom-[5px] before:left-1/2 before:-translate-x-1/2 
+                before:w-0 before:h-0.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
                  before:bg-gradient-to-r before:from-black before:via-black before:to-black hover:before:w-full hover:before:opacity-100${
                    activeItem === "petiterestauration" ? "active" : ""
                  }`}
@@ -225,8 +225,8 @@ function Header() {
               </li>
               <li
                 className={` uppercase relative cursor-pointer transition-all duration-500
-                before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
-                before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                before:content-[''] before:absolute before:bottom-[5px] before:left-1/2 before:-translate-x-1/2 
+                before:w-0 before:h-0.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
                  before:bg-gradient-to-r before:from-black before:via-black before:to-black hover:before:w-full hover:before:opacity-100${
                    activeItem === "salon" ? "active" : ""
                  }`}
