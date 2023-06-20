@@ -119,8 +119,8 @@ function Header() {
               <li
                 className={` uppercase relative cursor-pointer transition-all duration-500
                      before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
-                     before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
-                      before:bg-gradient-to-r before:from-blue-600 before:via-white before:to-red-500 hover:before:w-full hover:before:opacity-100${
+                     before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                      before:bg-gradient-to-r before:from-black before:via-black before:to-black hover:before:w-full hover:before:opacity-100${
                         activeItem === "epicerie" ? "active" : ""
                       }`}
               >
@@ -153,11 +153,11 @@ function Header() {
               </li>
               <li
                 className={` uppercase relative cursor-pointer transition-all duration-500
-                     before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
-                     before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
-                      before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
-                        activeItem === "traiteur" ? "active" : ""
-                      }`}
+                before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
+                before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                 before:bg-gradient-to-r before:from-black before:via-black before:to-black hover:before:w-full hover:before:opacity-100${
+                   activeItem === "traiteur" ? "active" : ""
+                 }`}
               >
                 <Link
                   activeClass="active"
@@ -188,8 +188,8 @@ function Header() {
               <li
                 className={` uppercase relative cursor-pointer transition-all duration-500
                 before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
-                before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
-                 before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
+                before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                 before:bg-gradient-to-r before:from-black before:via-black before:to-black hover:before:w-full hover:before:opacity-100${
                    activeItem === "petiterestauration" ? "active" : ""
                  }`}
               >
@@ -225,11 +225,11 @@ function Header() {
               </li>
               <li
                 className={` uppercase relative cursor-pointer transition-all duration-500
-                     before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
-                     before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
-                      before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
-                        activeItem === "salon" ? "active" : ""
-                      }`}
+                before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
+                before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                 before:bg-gradient-to-r before:from-black before:via-black before:to-black hover:before:w-full hover:before:opacity-100${
+                   activeItem === "salon" ? "active" : ""
+                 }`}
               >
                 <Link
                   activeClass="active"
