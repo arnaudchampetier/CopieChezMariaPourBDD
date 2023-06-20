@@ -120,7 +120,7 @@ function Header() {
                 className={` uppercase relative cursor-pointer transition-all duration-500
                      before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
                      before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
-                      before:bg-gradient-to-r before:from-blue-600 before:via-white before:to-red-600 hover:before:w-full hover:before:opacity-100${
+                      before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
                         activeItem === "epicerie" ? "active" : ""
                       }`}
               >
@@ -170,7 +170,7 @@ function Header() {
                   onClick={() => handleClick("traiteur")}
                 >
                   <span
-                    className={`hidden xl:block  ${
+                    className={`hidden xl:block hover:scale-110 transition duration-1000 ${
                       activeItem === "traiteur" ? "traiteur active" : ""
                     }`}
                   >
@@ -204,7 +204,7 @@ function Header() {
                   onClick={() => handleClick("petiterestauration")}
                 >
                   <span
-                    className={` hidden xl:block ${
+                    className={` hidden xl:block hover:scale-110 transition duration-1000 ${
                       activeItem === "petiterestauration"
                         ? "petiterestauration active"
                         : ""
@@ -242,7 +242,7 @@ function Header() {
                   onClick={() => handleClick("salon")}
                 >
                   <span
-                    className={`hidden xl:block  ${
+                    className={`hidden xl:block hover:scale-110 transition duration-1000 ${
                       activeItem === "salon" ? "salon active" : ""
                     }`}
                   >

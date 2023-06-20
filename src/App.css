@@ -1,7 +1,13 @@
 
 .bg-navbar {
   background-image: url('./assets/bandeaumaria.png');
-  background-size: cover;
+  background-size: cover;  
+  transition: background-color 0.5s ease; /* Ajout de la transition pour la couleur de fond */
+}
+
+.bg-site {
+  background-image: url('./assets/ardeche.png');
+  background-size: fit;
   transition: background-color 0.5s ease; /* Ajout de la transition pour la couleur de fond */
 }
 
