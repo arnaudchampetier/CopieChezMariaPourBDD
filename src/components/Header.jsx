@@ -117,7 +117,7 @@ function Header() {
                 </Link>
               </li>
               <li
-                className={`hidden xl:block  uppercase relative cursor-pointer transition-all duration-500
+                className={` uppercase relative cursor-pointer transition-all duration-500
                      before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
                      before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
                       before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
@@ -135,7 +135,7 @@ function Header() {
                   onClick={() => handleClick("epicerie")}
                 >
                   <span
-                    className={`
+                    className={`hidden xl:block 
                        ${
                          activeItem === "epicerie" ? "epicerie-fine active" : ""
                        }`}
@@ -152,7 +152,7 @@ function Header() {
                 </Link>
               </li>
               <li
-                className={`hidden xl:block  uppercase relative cursor-pointer transition-all duration-500
+                className={` uppercase relative cursor-pointer transition-all duration-500
                      before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
                      before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
                       before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
@@ -170,7 +170,7 @@ function Header() {
                   onClick={() => handleClick("traiteur")}
                 >
                   <span
-                    className={` ${
+                    className={`hidden xl:block  ${
                       activeItem === "traiteur" ? "traiteur active" : ""
                     }`}
                   >
@@ -186,7 +186,7 @@ function Header() {
                 </Link>
               </li>
               <li
-                className={`hidden xl:block  uppercase relative cursor-pointer transition-all duration-500
+                className={` uppercase relative cursor-pointer transition-all duration-500
                 before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
                 before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
                  before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
@@ -204,7 +204,7 @@ function Header() {
                   onClick={() => handleClick("petiterestauration")}
                 >
                   <span
-                    className={` ${
+                    className={` hidden xl:block ${
                       activeItem === "petiterestauration"
                         ? "petiterestauration active"
                         : ""
@@ -224,7 +224,7 @@ function Header() {
                 </Link>
               </li>
               <li
-                className={`hidden xl:block  uppercase relative cursor-pointer transition-all duration-500
+                className={` uppercase relative cursor-pointer transition-all duration-500
                      before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
                      before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
                       before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
@@ -242,7 +242,7 @@ function Header() {
                   onClick={() => handleClick("salon")}
                 >
                   <span
-                    className={` ${
+                    className={`hidden xl:block  ${
                       activeItem === "salon" ? "salon active" : ""
                     }`}
                   >
