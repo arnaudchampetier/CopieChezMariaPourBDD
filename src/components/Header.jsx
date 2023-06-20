@@ -101,7 +101,7 @@ function Header() {
               isSticky ? "sticky bg-white sticky-nav sticky-compense" : ""
             }`}
           >
-            <ul className="h-12  px-8 mt-8 sm:mt-8 md:mt-10 lg:mt-9 xl:mt-8 2xl:mt-8 cursor-pointer flex flex-row  justify-center space-x-2 md:space-x-16 lg:space-x-38 xl:space-x-44 text-gray-700 text-md md:text-xl font-larken uppercase font-bold tracking-wider ">
+            <ul className="h-12  px-8 mt-8 sm:mt-8 md:mt-10 lg:mt-9 xl:mt-8 2xl:mt-8 cursor-pointer flex flex-row  justify-center space-x-2 md:space-x-16 lg:space-x-38 xl:space-x-38 2xl:space-x-44 text-gray-700 text-md md:text-xl font-larken uppercase font-bold tracking-wider ">
               <li className="hidden md:block">
                 <Link
                   className="text-white transition-all duration-300 z-50"
@@ -166,7 +166,7 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:text-black hover:text-2xl transition duration-300"
+                  className="hover:text-black hover:text-xl transition duration-300"
                   onClick={() => handleClick("traiteur")}
                 >
                   <span
@@ -200,7 +200,7 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:text-black hover:text-2xl transition duration-300"
+                  className="hover:text-black hover:text-xl transition duration-300"
                   onClick={() => handleClick("petiterestauration")}
                 >
                   <span
@@ -238,7 +238,7 @@ function Header() {
                   smooth={true}
                   offset={-70}
                   duration={1000}
-                  className="hover:text-black hover:text-2xl transition duration-300"
+                  className="hover:text-black hover:text-xl transition duration-300"
                   onClick={() => handleClick("salon")}
                 >
                   <span
