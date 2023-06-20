@@ -92,7 +92,7 @@ function Header() {
             <img
               src={Logo}
               alt="Logo de l'épicerie ardéchoise"
-              className="h-36 cursor-pointer md:h-56 w-32 md:w-48 rounded-xl mx-auto hover:scale-105 transition-all duration-1000 "
+              className="h-36 cursor-pointer md:h-56 w-32 md:w-48 rounded-xl mx-auto hover:scale-105  transition-all duration-1000 "
               onClick={() => scroll.scrollToTop()}
             />
           </div>
@@ -120,7 +120,7 @@ function Header() {
                 className={` uppercase relative cursor-pointer transition-all duration-500
                      before:content-[''] before:absolute before:bottom-[-10px] before:left-1/2 before:-translate-x-1/2 
                      before:w-0 before:h-1.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
-                      before:bg-gradient-to-r before:from-gray-600 before:via-slate-400 before:to-zinc-500 hover:before:w-full hover:before:opacity-100${
+                      before:bg-gradient-to-r before:from-blue-600 before:via-white before:to-red-500 hover:before:w-full hover:before:opacity-100${
                         activeItem === "epicerie" ? "active" : ""
                       }`}
               >
@@ -246,7 +246,7 @@ function Header() {
                       activeItem === "salon" ? "salon active" : ""
                     }`}
                   >
-                    Salon Chez Maria
+                    Salon
                   </span>
                   <span
                     className={`xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
