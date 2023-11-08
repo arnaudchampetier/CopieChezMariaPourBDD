@@ -104,9 +104,14 @@ span.active {
   }
 }
 
+.leaflet-pane { z-index: 0 !important; }
 
 
 
+/* Dans votre fichier CSS */
+.custom-product {
+  height: 500px; /* Définissez la hauteur souhaitée ici */
+}
 
 
 
