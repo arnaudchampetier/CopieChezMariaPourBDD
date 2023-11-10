@@ -1,4 +1,4 @@
-import { Elements, useStripe, useElements } from "@stripe/react-stripe-js";
+import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { CardElement } from "@stripe/react-stripe-js";
 import { calculateTotal } from "./Panier";
 
@@ -86,6 +86,25 @@ const CheckoutForm = ({ cartItems }) => {
     return <p>Aucun article dans le panier.</p>;
   }
 
+  const cardStyle = {
+    style: {
+      base: {
+        color: "#32325d",
+        fontFamily: "semplicita, sans-serif",
+        fontSmoothing: "antialiased",
+        fontSize: "16px",
+        "::placeholder": {
+          color: "#32325d",
+        },
+      },
+      invalid: {
+        fontFamily: "Arial, sans-serif",
+        color: "#fa755a",
+        iconColor: "#fa755a",
+      },
+    },
+  };
+
   return (
     <form
       onSubmit={handleFormSubmit}
@@ -103,13 +122,13 @@ const CheckoutForm = ({ cartItems }) => {
       </div>
       <div className="mb-3 flex -mx-2">
         <div className="px-2">
-          <label for="type1" className="flex items-center cursor-pointer">
+          <label htmlFor="type1" className="flex items-center cursor-pointer">
             <input
               type="radio"
               className="form-radio h-5 w-5 text-indigo-500"
               name="type"
               id="type1"
-              checked
+              defaultChecked
             />
             <img
               src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
@@ -145,15 +164,7 @@ const CheckoutForm = ({ cartItems }) => {
         </div>
 
         <div className="bg-white p-2 rounded shadow appearance-none border-red-800 border-solid border-2 ">
-          <CardElement
-            options={{
-              style: {
-                base: {
-                  fontSize: "14px",
-                },
-              },
-            }}
-          />
+          <CardElement options={cardStyle} />
         </div>
       </div>
       <div className="text-center">

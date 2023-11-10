@@ -26,6 +26,7 @@ function Header() {
       const petiterestaurationSection =
         document.getElementById("petiterestauration");
       const salonSection = document.getElementById("salon");
+      const boutiqueSection = document.getElementById("boutique");
       const threshold = 200;
 
       const epicerieOffset = epicerieSection.offsetTop - threshold;
@@ -33,6 +34,7 @@ function Header() {
       const petiterestaurationOffset =
         petiterestaurationSection.offsetTop - threshold;
       const salonOffset = salonSection.offsetTop - threshold;
+      const boutiqueOffset = boutiqueSection.offsetTop - threshold;
 
       if (scrollTop >= epicerieOffset && scrollTop < traiteurOffset) {
         setActiveItem("epicerie");
@@ -43,9 +45,11 @@ function Header() {
         setActiveItem("traiteur");
       } else if (
         scrollTop >= petiterestaurationOffset &&
-        scrollTop < salonOffset
+        scrollTop < boutiqueOffset
       ) {
         setActiveItem("petiterestauration");
+      } else if (scrollTop >= boutiqueOffset && scrollTop < salonOffset) {
+        setActiveItem("boutique");
       } else if (scrollTop >= salonOffset) {
         setActiveItem("salon");
       } else {
@@ -223,6 +227,7 @@ function Header() {
                   </span>
                 </Link>
               </li>
+
               <li
                 className={` uppercase relative cursor-pointer transition-all duration-500
                 before:content-[''] before:absolute before:bottom-[5px] before:left-1/2 before:-translate-x-1/2 
@@ -254,6 +259,40 @@ function Header() {
                     }`}
                   >
                     Salon
+                  </span>
+                </Link>
+              </li>
+              <li
+                className={` uppercase relative cursor-pointer transition-all duration-500
+                before:content-[''] before:absolute before:bottom-[5px] before:left-1/2 before:-translate-x-1/2 
+                before:w-0 before:h-0.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
+                 before:bg-gradient-to-r before:from-black before:via-black before:to-black hover:before:w-full hover:before:opacity-100${
+                   activeItem === "boutique" ? "active" : ""
+                 }`}
+              >
+                <Link
+                  activeClass="active"
+                  to="boutique"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={1000}
+                  className="hover:text-black hover:text-xl transition duration-300"
+                  onClick={() => handleClick("boutique")}
+                >
+                  <span
+                    className={`hidden xl:block hover:scale-110 transition duration-1000 ${
+                      activeItem === "boutique" ? "boutique active" : ""
+                    }`}
+                  >
+                    Boutique
+                  </span>
+                  <span
+                    className={`xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${
+                      activeItem === "boutique" ? "boutique active" : ""
+                    }`}
+                  >
+                    Boutique
                   </span>
                 </Link>
               </li>

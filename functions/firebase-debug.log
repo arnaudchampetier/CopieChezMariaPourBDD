@@ -1,0 +1,106 @@
+[debug] [2023-11-09T17:06:59.147Z] ----------------------------------------------------------------------
+[debug] [2023-11-09T17:06:59.148Z] Command:       /home/arnaud/.nvm/versions/node/v16.17.1/bin/node /home/arnaud/.nvm/versions/node/v16.17.1/bin/firebase deploy --only functions --debug
+[debug] [2023-11-09T17:06:59.148Z] CLI Version:   12.8.1
+[debug] [2023-11-09T17:06:59.148Z] Platform:      linux
+[debug] [2023-11-09T17:06:59.149Z] Node Version:  v16.17.1
+[debug] [2023-11-09T17:06:59.149Z] Time:          Thu Nov 09 2023 18:06:59 GMT+0100 (heure normale d’Europe centrale)
+[debug] [2023-11-09T17:06:59.149Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-11-09T17:06:59.189Z] Field ".functions" in "firebase.json" is possibly invalid: should be object
+[debug] [2023-11-09T17:06:59.190Z] Object ".functions[0]" in "firebase.json" has unknown property: {"additionalProperty":"entryPoint"}
+[debug] [2023-11-09T17:06:59.190Z] Field ".functions" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-11-09T17:06:59.192Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-11-09T17:06:59.192Z] > authorizing via signed-in user (arnaud.champetier9@gmail.com)
+[debug] [2023-11-09T17:06:59.192Z] [iam] checking project chez-maria for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-11-09T17:06:59.194Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/chez-maria:testIamPermissions [none]
+[debug] [2023-11-09T17:06:59.194Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/chez-maria:testIamPermissions x-goog-quota-user=projects/chez-maria
+[debug] [2023-11-09T17:06:59.194Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/chez-maria:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-11-09T17:06:59.466Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/chez-maria:testIamPermissions 200
+[debug] [2023-11-09T17:06:59.467Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/chez-maria:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-11-09T17:06:59.468Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/chez-maria/serviceAccounts/chez-maria@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-11-09T17:06:59.468Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/chez-maria/serviceAccounts/chez-maria@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-11-09T17:07:00.129Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/chez-maria/serviceAccounts/chez-maria@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2023-11-09T17:07:00.129Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/chez-maria/serviceAccounts/chez-maria@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'chez-maria'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-11-09T17:07:00.137Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/chez-maria [none]
+[debug] [2023-11-09T17:07:00.562Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/chez-maria 200
+[debug] [2023-11-09T17:07:00.563Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/chez-maria {"projectId":"chez-maria","projectNumber":"133565448797","displayName":"Chez Maria","name":"projects/chez-maria","resources":{"hostingSite":"chez-maria","storageBucket":"chez-maria.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_f4195262-eb2e-4557-b3d3-9f84b92a32b6"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2023-11-09T17:07:00.566Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/cloudfunctions.googleapis.com [none]
+[debug] [2023-11-09T17:07:00.566Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/chez-maria
+[debug] [2023-11-09T17:07:00.568Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/runtimeconfig.googleapis.com [none]
+[debug] [2023-11-09T17:07:00.569Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/chez-maria
+[debug] [2023-11-09T17:07:00.570Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/cloudbuild.googleapis.com [none]
+[debug] [2023-11-09T17:07:00.570Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/cloudbuild.googleapis.com x-goog-quota-user=projects/chez-maria
+[debug] [2023-11-09T17:07:00.571Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/artifactregistry.googleapis.com [none]
+[debug] [2023-11-09T17:07:00.571Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/artifactregistry.googleapis.com x-goog-quota-user=projects/chez-maria
+[debug] [2023-11-09T17:07:01.547Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/runtimeconfig.googleapis.com 200
+[debug] [2023-11-09T17:07:01.547Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2023-11-09T17:07:01.551Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/cloudfunctions.googleapis.com 200
+[debug] [2023-11-09T17:07:01.551Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2023-11-09T17:07:01.557Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/artifactregistry.googleapis.com 200
+[debug] [2023-11-09T17:07:01.557Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2023-11-09T17:07:01.558Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/cloudbuild.googleapis.com 200
+[debug] [2023-11-09T17:07:01.558Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/chez-maria/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2023-11-09T17:07:01.559Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/chez-maria/adminSdkConfig [none]
+[debug] [2023-11-09T17:07:01.914Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/chez-maria/adminSdkConfig 200
+[debug] [2023-11-09T17:07:01.914Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/chez-maria/adminSdkConfig {"projectId":"chez-maria","storageBucket":"chez-maria.appspot.com","locationId":"europe-west"}
+[debug] [2023-11-09T17:07:01.915Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs [none]
+[debug] [2023-11-09T17:07:02.406Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs 200
+[debug] [2023-11-09T17:07:02.407Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs {"configs":[{"name":"projects/chez-maria/configs/cors"},{"name":"projects/chez-maria/configs/stripe"}]}
+[debug] [2023-11-09T17:07:02.408Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs/cors/variables [none]
+[debug] [2023-11-09T17:07:02.410Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs/stripe/variables [none]
+[debug] [2023-11-09T17:07:02.716Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs/cors/variables 200
+[debug] [2023-11-09T17:07:02.716Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs/cors/variables {}
+[debug] [2023-11-09T17:07:02.722Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs/stripe/variables 200
+[debug] [2023-11-09T17:07:02.722Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs/stripe/variables {"variables":[{"name":"projects/chez-maria/configs/stripe/variables/secret","updateTime":"2023-10-23T11:38:20.312108947Z"}]}
+[debug] [2023-11-09T17:07:02.723Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs/stripe/variables/secret [none]
+[debug] [2023-11-09T17:07:03.142Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs/stripe/variables/secret 200
+[debug] [2023-11-09T17:07:03.142Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/chez-maria/configs/stripe/variables/secret {"name":"projects/chez-maria/configs/stripe/variables/secret","updateTime":"2023-10-23T11:38:20.312108947Z","text":"sk_test_51NvdtyEHjHfYLKwkgHnY5HKLlmdPZleq6KAr4No0sYADe9FUrjnUCKcwIDu8A8EYZAG4ECaSvOjD1RuPOvIbpTse00Z7QFJm17"}
+[debug] [2023-11-09T17:07:03.146Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2023-11-09T17:07:03.446Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "firebase-admin": "^11.11.0",
+    "firebase-functions": "^4.3.1",
+    "stripe": "^14.1.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2023-11-09T17:07:03.446Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2023-11-09T17:07:03.447Z] Could not find functions.yaml. Must use http discovery
+[debug] [2023-11-09T17:07:03.451Z] Found firebase-functions binary at '/home/arnaud/COPIEChezMariaPourBDD/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8670
+
+[debug] [2023-11-09T17:07:03.639Z] Got response code 400; body Failed to generate manifest from function source: TypeError: Cannot read properties of undefined (reading 'origin')
+[info] shutdown requested via /__/quitquitquit
+
+[error] 
+[error] Error: Functions codebase could not be analyzed successfully. It may have a syntax or runtime error

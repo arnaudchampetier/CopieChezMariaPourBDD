@@ -3,10 +3,12 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import ProductCard from "./ProductCard";
 import Panier from "./Panier";
 import { db } from "../firebase"; // Importez db depuis votre fichier firebase.js
+import "../App.css";
 
 function ClicAndCollect({ cartItems, setCartItems }) {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Epicerie sucrée");
+  const [selectedFamily, setSelectedFamily] = useState(null);
 
   const categories = [
     "Epicerie sucrée",
@@ -20,7 +22,6 @@ function ClicAndCollect({ cartItems, setCartItems }) {
   ];
 
   useEffect(() => {
-    // Utilisez un effet secondaire pour charger les produits lorsque Firebase est prêt
     const fetchProductsByCategory = async () => {
       const productRef = collection(db, "Click & Collect de Chez Maria");
       const q = query(productRef, where("category", "==", selectedCategory));
@@ -38,10 +39,18 @@ function ClicAndCollect({ cartItems, setCartItems }) {
     };
 
     fetchProductsByCategory();
-  }, [selectedCategory]); // Assurez-vous que db est passé comme prop
+    setSelectedFamily(null); // Réinitialise la famille sélectionnée
+  }, [selectedCategory]);
+
+  const uniqueFamilies = [
+    ...new Set(products.map((product) => product.famille)),
+  ];
+
+  const filteredProducts = selectedFamily
+    ? products.filter((product) => product.famille === selectedFamily)
+    : products;
 
   const addToCart = (product) => {
-    // Mettez à jour le panier en utilisant la fonction reçue en prop
     const updatedCartItems = [...cartItems];
     const productIndex = updatedCartItems.findIndex(
       (item) => item.id === product.id
@@ -54,9 +63,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
       updatedCartItems.push(newCartItem);
     }
 
-    // Mettez à jour le panier dans le stockage local
     localStorage.setItem("cart", JSON.stringify(updatedCartItems));
-
     setCartItems(updatedCartItems);
   };
 
@@ -76,7 +83,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
   };
 
   return (
-    <div className=" mx-auto px-4 py-4 bg-red-200">
+    <div className="mx-auto px-4 py-4 bg-red-200" id="boutique">
       <h1 className="font-larken text-4xl mb-8 ">
         Nos produits en Click & Collect
       </h1>
@@ -107,8 +114,25 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           ))}
         </select>
       </div>
-      <div className="flex flex-wrap -mx-4  font-semplicita ">
-        {products.map((product) => (
+      {uniqueFamilies.length > 1 && (
+        <div className="mb-4 flex flex-wrap max-w-full space-x-4 space-y-4">
+          {uniqueFamilies.map((family) => (
+            <button
+              key={family}
+              className={`text-lg md:text-2xl font-semplicita px-4 py-2 rounded-lg shadow-xl bg-red-50 ${
+                selectedFamily === family ? "bg-red-300 font-bold" : ""
+              }  m-0 flex-none`}
+              onClick={() =>
+                setSelectedFamily(family === selectedFamily ? null : family)
+              }
+            >
+              {family}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="flex flex-wrap -mx-4 font-semplicita">
+        {filteredProducts.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
@@ -121,7 +145,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
         setCartItems={setCartItems}
         updateQuantity={updateQuantity}
         clearCart={clearCart}
-      />{" "}
+      />
     </div>
   );
 }
