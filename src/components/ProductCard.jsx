@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import ProductDescriptionModal from "./ProductDescriptionModal";
-import goutezlardeche from "../assets/LOGO-GOUTEZ-LARDECHE_RVB.png";
+import goutezlardeche from "../assets/goutezmoica.png";
 import AB from "../assets/Agriculture-biologique.svg.png";
 
 function ProductCard({ product, addToCart }) {
@@ -27,7 +27,7 @@ function ProductCard({ product, addToCart }) {
           key="organic"
           src={AB}
           alt="Produit biologique"
-          className="w-12 h-12 mr-2"
+          className="w-12 h-12 mr-2 mb-4"
         />
       );
     }
@@ -41,7 +41,7 @@ function ProductCard({ product, addToCart }) {
           key="ardeche"
           src={goutezlardeche}
           alt="Goûtez l'Ardèche"
-          className="w-16 h-16"
+          className="w-12 h-12 mr-2"
         />
       );
     }
@@ -56,6 +56,8 @@ function ProductCard({ product, addToCart }) {
           className={`custom-product bg-gray-100 p-4 rounded-xl shadow-xl flex flex-col overflow-y-auto transition-transform duration-1500 transform-gpu`}
         >
           <h3 className="text-lg font-semibold mt-2 mb-5">{product.name}</h3>
+          <div className="flex-grow"></div>
+
           <div className="flex">
             <img
               onClick={() => openModal(product, renderPictograms())}
