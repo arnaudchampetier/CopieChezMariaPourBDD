@@ -16,17 +16,20 @@ function ProductDescriptionModal({
         >
           <MdCancel size={24} />
         </button>
-        <div className="w-full h-1/2 flex justify-center items-center">
+        <div className="w-full h-1/2 flex flex-col justify-center items-center">
+          <h1 className="text-3xl mb-3 font-larken">{product.name}</h1>
           <img
             src={product.picture}
             alt={product.name}
-            className="w-1/4 h-auto rounded mt-8 mb-8 hover:scale-150 transition-transform duration-1000"
+            className="w-1/4 h-auto rounded mt-8 mb-9 hover:scale-150 transition-transform duration-1000"
           />
         </div>
         <div className="mx-8">
-          <h2 className="font-larken text-2xl items-center justify-center flex mb-4">
-            Labels qualité:
-          </h2>
+          {pictograms && pictograms.length > 0 && (
+            <h2 className="font-larken text-2xl items-center justify-center flex mb-4">
+              Labels qualité:
+            </h2>
+          )}
           <div className="flex items-center justify-center hover:scale-125 transition-transform duration-1000 mx-auto">
             {pictograms}
           </div>
