@@ -9,6 +9,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Epicerie sucrée");
   const [selectedFamily, setSelectedFamily] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const categories = [
     "Epicerie sucrée",
@@ -46,9 +47,16 @@ function ClicAndCollect({ cartItems, setCartItems }) {
     ...new Set(products.map((product) => product.famille)),
   ];
 
-  const filteredProducts = selectedFamily
-    ? products.filter((product) => product.famille === selectedFamily)
-    : products;
+  const filteredProducts = products.filter((product) => {
+    const matchesCategory =
+      !selectedCategory || product.category === selectedCategory;
+    const matchesFamily = !selectedFamily || product.famille === selectedFamily;
+    const matchesSearchTerm =
+      !searchTerm ||
+      product.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return matchesCategory && matchesFamily && matchesSearchTerm;
+  });
 
   const addToCart = (product) => {
     const updatedCartItems = [...cartItems];
@@ -87,9 +95,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
       <h1 className="font-larken text-4xl mb-8 ">
         Nos produits en Click & Collect
       </h1>
-      <h2 className="text-3xl font-light mb-4 font-larken ">
-        {selectedCategory}
-      </h2>
+
       <div className="mb-4">
         <label
           htmlFor="categorySelect"
@@ -114,7 +120,19 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           ))}
         </select>
       </div>
-      {uniqueFamilies.length > 1 && (
+      <div className="mb-4">
+        <label htmlFor="search" className="mr-2 font-semplicita text-xl">
+          Recherchez un produit :
+        </label>
+        <input
+          type="text"
+          id="search"
+          className="text-lg md:text-2xl font-semplicita px-2 py-2 rounded-lg shadow-xl bg-red-50"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      {uniqueFamilies.length > 0 && (
         <div className="mb-4 flex flex-wrap max-w-full space-x-4 space-y-4">
           {uniqueFamilies.map((family) => (
             <button
@@ -131,6 +149,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           ))}
         </div>
       )}
+
       <div className="flex flex-wrap -mx-4 font-semplicita">
         {filteredProducts.map((product) => (
           <ProductCard
