@@ -121,7 +121,11 @@ function ClicAndCollect({ cartItems, setCartItems }) {
         </select>
       </div>
       <div className="mb-4">
-        <label htmlFor="search" className="mr-2 font-semplicita text-xl">
+        <label
+          htmlFor="search"
+          className="mr-2 font-semplicita text-xl"
+          placeholder="Recherchez un produit"
+        >
           Recherchez un produit :
         </label>
         <input
@@ -133,12 +137,12 @@ function ClicAndCollect({ cartItems, setCartItems }) {
         />
       </div>
       {uniqueFamilies.length > 0 && (
-        <div className="mb-4 flex flex-wrap max-w-full space-x-4 space-y-4">
+        <div className="mb-4 flex flex-wrap max-w-full space-x-4 space-y-4 mx-12">
           {uniqueFamilies.map((family) => (
             <button
               key={family}
-              className={`text-lg md:text-2xl font-semplicita px-4 py-2 rounded-lg shadow-xl bg-red-50 ${
-                selectedFamily === family ? "bg-red-300 font-bold" : ""
+              className={`text-lg md:text-2xl font-larken px-4 py-2 rounded-lg shadow-xl bg-red-50 ${
+                selectedFamily === family ? " font-bold" : ""
               }  m-0 flex-none`}
               onClick={() =>
                 setSelectedFamily(family === selectedFamily ? null : family)
