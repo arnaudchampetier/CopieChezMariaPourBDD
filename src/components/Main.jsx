@@ -257,16 +257,16 @@ function Main() {
           <h1 className="text-2xl text-center md:text-2xl font-semplicita mb-2 mt-12 md:mt-12 text-gray-800">
             Et aussi ...{" "}
           </h1>
-          <div
-            id="salon"
-            className=" mt-24 lg:mt-32 bg-navbar flex flex-col  items-center mx-auto border border-gray-200 rounded-lg shadow md:flex-row lg:w-3/4 hover:bg-red-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer hover:opacity-90 transition duration-500 ease-in-out"
-          >
+          <div className=" mt-24 lg:mt-32 bg-navbar flex flex-col  items-center mx-auto border border-gray-200 rounded-lg shadow md:flex-row lg:w-3/4 hover:bg-red-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer hover:opacity-90 transition duration-500 ease-in-out">
             <img
               className="object-cover w-full rounded-t-lg h-96 md:h-96 md:w-48 md:rounded-none md:rounded-l-lg lg:h-142 lg:w-142"
               src={Salon}
               alt=""
             />
-            <div className="flex flex-col p-4 leading-normal text-center justify-start ">
+            <div
+              className="flex flex-col p-4 leading-normal text-center justify-start "
+              id="salon"
+            >
               <h5 className="lg:mb-28 mb-8 text-3xl font-larken  tracking-tight text-black  ">
                 Salon de Maria{" "}
               </h5>

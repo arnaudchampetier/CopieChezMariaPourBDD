@@ -137,7 +137,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
         />
       </div>
       {uniqueFamilies.length > 0 && (
-        <div className="mb-4 flex flex-wrap max-w-full space-x-4 space-y-4 mx-12">
+        <div className="mb-4 flex flex-wrap max-w-full space-x-4 space-y-4 mx-auto">
           {uniqueFamilies.map((family) => (
             <button
               key={family}

@@ -75,7 +75,7 @@ function ProductCard({ product, addToCart }) {
 
           <button
             onClick={() => openModal(product, renderPictograms())}
-            className="text-purple-600 text-xl font-semibold mt-2 hover:text-purple-800 focus:outline-none"
+            className="text-purple-600 text-xl font-semibold mt-6 hover:text-purple-800 focus:outline-none "
           >
             En savoir plus
           </button>

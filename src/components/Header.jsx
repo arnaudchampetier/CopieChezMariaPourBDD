@@ -17,45 +17,32 @@ function Header() {
     }
   };
 
+  const threshold = 200; // ou la valeur que vous souhaitez utiliser
+
   const handleScroll = () => {
     if (shouldHandleScroll) {
-      // Votre logique handleScroll ici
       const scrollTop = window.pageYOffset;
-      const epicerieSection = document.getElementById("epicerie");
-      const traiteurSection = document.getElementById("traiteur");
-      const petiterestaurationSection =
-        document.getElementById("petiterestauration");
-      const salonSection = document.getElementById("salon");
-      const boutiqueSection = document.getElementById("boutique");
-      const threshold = 200;
+      const sections = [
+        "epicerie",
+        "traiteur",
+        "petiterestauration",
+        "salon",
+        "boutique",
+      ];
+      const sectionOffsets = sections.map((sectionId) => {
+        const section = document.getElementById(sectionId);
+        return section.offsetTop - threshold;
+      });
 
-      const epicerieOffset = epicerieSection.offsetTop - threshold;
-      const traiteurOffset = traiteurSection.offsetTop - threshold;
-      const petiterestaurationOffset =
-        petiterestaurationSection.offsetTop - threshold;
-      const salonOffset = salonSection.offsetTop - threshold;
-      const boutiqueOffset = boutiqueSection.offsetTop - threshold;
+      const activeSectionIndex = sectionOffsets.findIndex(
+        (offset, index) =>
+          scrollTop >= offset &&
+          scrollTop < (sectionOffsets[index + 1] || Infinity)
+      );
 
-      if (scrollTop >= epicerieOffset && scrollTop < traiteurOffset) {
-        setActiveItem("epicerie");
-      } else if (
-        scrollTop >= traiteurOffset &&
-        scrollTop < petiterestaurationOffset
-      ) {
-        setActiveItem("traiteur");
-      } else if (
-        scrollTop >= petiterestaurationOffset &&
-        scrollTop < boutiqueOffset
-      ) {
-        setActiveItem("petiterestauration");
-      } else if (scrollTop >= boutiqueOffset && scrollTop < salonOffset) {
-        setActiveItem("boutique");
-      } else if (scrollTop >= salonOffset) {
-        setActiveItem("salon");
-      } else {
-        setActiveItem(null);
-      }
-
+      setActiveItem(
+        activeSectionIndex !== -1 ? sections[activeSectionIndex] : null
+      );
       setIsSticky(scrollTop > threshold);
     }
   };
@@ -263,7 +250,8 @@ function Header() {
                 </Link>
               </li>
               <li
-                className={` uppercase relative cursor-pointer transition-all duration-500
+                className={` animate-text-gradient bg-gradient-to-r from-[#c015a9] via-[#2774d8] to-[#143feb] 
+                bg-[200%_auto] bg-clip-text text-transparent uppercase relative cursor-pointer transition-all duration-500
                 before:content-[''] before:absolute before:bottom-[5px] before:left-1/2 before:-translate-x-1/2 
                 before:w-0 before:h-0.5 before:rounded-full before:opacity-0 before:transition-all before:duration-500
                  before:bg-gradient-to-r before:from-black before:via-black before:to-black hover:before:w-full hover:before:opacity-100${
@@ -285,7 +273,7 @@ function Header() {
                       activeItem === "boutique" ? "boutique active" : ""
                     }`}
                   >
-                    Boutique
+                    Notre Boutique
                   </span>
                   <span
                     className={`xl:hidden rounded-xl custom-sm-text hover:scale-105 transition duration-1000 ${

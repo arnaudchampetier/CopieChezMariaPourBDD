@@ -13,7 +13,7 @@
 
 @media (max-width: 400px) {
   .custom-sm-text {
-    font-size: 0.875rem; /* Correspond à la taille de police "sm" */
+    font-size: 0.74rem; /* Correspond à la taille de police "sm" */
   }
 }
 
