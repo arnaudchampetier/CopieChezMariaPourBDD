@@ -34,6 +34,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           ...doc.data(),
         }));
         setProducts(productsData);
+        console.log("Products:", productsData);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
       }
@@ -95,7 +96,6 @@ function ClicAndCollect({ cartItems, setCartItems }) {
       <h1 className="font-larken text-4xl mb-8 ">
         Nos produits en Click & Collect
       </h1>
-
       <div className="mb-4">
         <label
           htmlFor="categorySelect"
@@ -153,7 +153,25 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           ))}
         </div>
       )}
-
+      {selectedCategory === "Nos desserts maison (recettes de Maria)" && (
+        <div className="w-full">
+          <p className="text-gray-800 bg-yellow-200 p-4 rounded-lg shadow-xl font-light font-semplicita italic mb-4 text-xl md:w-2/3 h-full">
+            ⚠️ Nous réalisons chaque jour nous-même nos desserts, issus du
+            carnet de recettes de Maria. Au vu de nos petites ressources, il est
+            difficile de vous proposer quotidiennement tous les desserts à la
+            carte. De ce fait : n’hésitez pas à nous demander les desserts
+            disponibles du jour !
+          </p>
+        </div>
+      )}
+      {selectedCategory === "Déco & Maison" && (
+        <div className="w-full">
+          <p className="text-gray-800 bg-yellow-200 p-4 rounded-lg shadow-xl font-light font-semplicita italic mb-4 text-xl md:w-2/3 h-full">
+            ⚠️ Nos jolies bougies partent très vite : demandez-nous si vos
+            senteurs préférées sont disponibles !
+          </p>
+        </div>
+      )}
       <div className="flex flex-wrap -mx-4 font-semplicita">
         {filteredProducts.map((product) => (
           <ProductCard

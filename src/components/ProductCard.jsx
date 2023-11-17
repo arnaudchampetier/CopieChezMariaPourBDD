@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // Importez les icônes de flèches de react-icons
 import "../App.css";
 import ProductDescriptionModal from "./ProductDescriptionModal";
 import goutezlardeche from "../assets/goutezmoica.png";
@@ -8,11 +9,24 @@ function ProductCard({ product, addToCart }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedPictograms, setSelectedPictograms] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const openModal = (product, pictograms) => {
     setSelectedProduct(product);
     setSelectedPictograms(pictograms);
     setModalOpen(true);
+  };
+
+  const nextImage = () => {
+    if (product.picture2) {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 2);
+    }
+  };
+
+  const prevImage = () => {
+    if (product.picture2) {
+      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + 2) % 2);
+    }
   };
 
   const renderPictograms = () => {
@@ -49,19 +63,44 @@ function ProductCard({ product, addToCart }) {
     return pictograms;
   };
 
+  const images = [product.picture];
+
+  if (product.picture2) {
+    images.push(product.picture2);
+  }
+
   return (
     <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/6 px-4 mb-8 mt-8 ">
       <div className="hover:scale-110 transition-transform duration-500">
         <div
           className={`custom-product bg-gray-100 p-4 rounded-xl shadow-xl flex flex-col overflow-y-auto transition-transform duration-1500 transform-gpu`}
         >
-          <h3 className="text-lg font-semibold mt-2 mb-5">{product.name}</h3>
+          <h3 className="text-lg font-semibold mt-2 mb-5">
+            {product.name}{" "}
+            {product.contenance ? (
+              <span className="font-normal">({product.contenance})</span>
+            ) : null}
+          </h3>
+
           <div className="flex-grow"></div>
 
-          <div className="flex">
+          <div className="relative">
+            {images.length > 1 && (
+              <>
+                <FiChevronLeft
+                  className="absolute top-1/2 left-0 transform -translate-y-1/2 cursor-pointer text-3xl text-gray-800 hover:text-purple-800"
+                  onClick={prevImage}
+                />
+                <FiChevronRight
+                  className="absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer text-3xl text-gray-800 hover:text-purple-800"
+                  onClick={nextImage}
+                />
+              </>
+            )}
+
             <img
               onClick={() => openModal(product, renderPictograms())}
-              src={product.picture}
+              src={images[currentImageIndex]}
               alt={product.name}
               className="w-full h-auto max-w-full rounded hover:scale-110 transition-transform duration-500 mx-auto cursor-pointer"
               style={{ width: "80%" }}
@@ -85,15 +124,25 @@ function ProductCard({ product, addToCart }) {
             <p className="text-gray-800 font-semibold text-xl mr-2">
               Prix : {product.price} €
             </p>
+            {product.isSoldOut && (
+              <p className="ml-auto text-red-500 font-semibold">En rupture</p>
+            )}
           </div>
 
           <button
             onClick={() => {
-              addToCart(product);
+              if (!product.isSoldOut) {
+                addToCart(product);
+              }
             }}
-            className="bg-cyan-900 text-white px-4 py-2 mt-2 rounded hover:bg-purple-700"
+            disabled={product.isSoldOut}
+            className={`${
+              product.isSoldOut
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-cyan-900"
+            } text-white px-4 py-2 mt-2 rounded hover:bg-purple-700`}
           >
-            Ajouter au panier
+            {product.isSoldOut ? "En rupture" : "Ajouter au panier"}
           </button>
         </div>
       </div>

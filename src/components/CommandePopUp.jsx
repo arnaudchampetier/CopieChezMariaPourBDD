@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { MdCancel } from "react-icons/md";
+
 import CheckOutForm from "./CheckOutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -38,6 +40,11 @@ function CommandePopUp({ isOpen, onClose, onConfirm, cartItems }) {
     >
       {" "}
       {/* Ajoutez cette div pour activer le défilement */}
+      <MdCancel
+        size={30}
+        className="text-2xl  top-6 left-4 cursor-pointer"
+        onClick={isOpen ? onClose : undefined}
+      />
       <h2 className="text-2xl font-larken mb-4">Commande</h2>
       <div className="mb-4 bg-gray-200 px-4 py-4">
         <h3 className="text-xl font-larken mb-2 ">
