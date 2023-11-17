@@ -41,7 +41,7 @@ function ProductCard({ product, addToCart }) {
           key="organic"
           src={AB}
           alt="Produit biologique"
-          className="w-12 h-12 mr-2 mb-4"
+          className="w-12 h-12  mb-4"
         />
       );
     }
@@ -55,7 +55,7 @@ function ProductCard({ product, addToCart }) {
           key="ardeche"
           src={goutezlardeche}
           alt="Goûtez l'Ardèche"
-          className="w-12 h-12 mr-2"
+          className="w-12 h-12 "
         />
       );
     }
@@ -84,7 +84,7 @@ function ProductCard({ product, addToCart }) {
 
           <div className="flex-grow"></div>
 
-          <div className="relative">
+          <div className="relative flex items-center">
             {images.length > 1 && (
               <>
                 <FiChevronLeft
@@ -98,18 +98,22 @@ function ProductCard({ product, addToCart }) {
               </>
             )}
 
-            <img
-              onClick={() => openModal(product, renderPictograms())}
-              src={images[currentImageIndex]}
-              alt={product.name}
-              className="w-full h-auto max-w-full rounded hover:scale-110 transition-transform duration-500 mx-auto cursor-pointer"
-              style={{ width: "80%" }}
-            />
-            {renderPictograms().length > 0 && (
-              <div className="flex flex-col my-auto hover:scale-125 transition-transform duration-500">
+            <div className="flex items-center">
+              {" "}
+              {/* Utilise la classe 'flex' ici */}
+              <img
+                onClick={() => openModal(product, renderPictograms())}
+                src={images[currentImageIndex]}
+                alt={product.name}
+                className="w-full h-auto max-w-full rounded hover:scale-110 transition-transform duration-500 mx-auto cursor-pointer"
+                style={{ width: "80%" }}
+              />
+              <div className="ml-0 flex flex-col justify-center hover:scale-125 transition-transform duration-500 ">
+                {" "}
+                {/* Utilise la classe 'flex-col' ici */}
                 {renderPictograms()}
               </div>
-            )}
+            </div>
           </div>
 
           <button
