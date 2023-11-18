@@ -18,14 +18,16 @@ function ProductCard({ product, addToCart }) {
   };
 
   const nextImage = () => {
-    if (product.picture2) {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 2);
+    if (images.length > 1) {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     }
   };
 
   const prevImage = () => {
-    if (product.picture2) {
-      setCurrentImageIndex((prevIndex) => (prevIndex - 1 + 2) % 2);
+    if (images.length > 1) {
+      setCurrentImageIndex(
+        (prevIndex) => (prevIndex - 1 + images.length) % images.length
+      );
     }
   };
 
@@ -69,6 +71,18 @@ function ProductCard({ product, addToCart }) {
     images.push(product.picture2);
   }
 
+  if (product.picture3) {
+    console.log("Picture 3:", product.picture3);
+
+    images.push(product.picture3);
+  }
+
+  if (product.picture4) {
+    console.log("Picture 4:", product.picture4);
+
+    images.push(product.picture4);
+  }
+
   return (
     <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/6 px-4 mb-8 mt-8 ">
       <div className="hover:scale-110 transition-transform duration-500">
@@ -85,19 +99,6 @@ function ProductCard({ product, addToCart }) {
           <div className="flex-grow"></div>
 
           <div className="relative flex items-center">
-            {images.length > 1 && (
-              <>
-                <FiChevronLeft
-                  className="absolute top-1/2 left-0 transform -translate-y-1/2 cursor-pointer text-3xl text-gray-800 hover:text-purple-800"
-                  onClick={prevImage}
-                />
-                <FiChevronRight
-                  className="absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer text-3xl text-gray-800 hover:text-purple-800"
-                  onClick={nextImage}
-                />
-              </>
-            )}
-
             <div className="flex items-center">
               {" "}
               {/* Utilise la classe 'flex' ici */}
@@ -118,11 +119,24 @@ function ProductCard({ product, addToCart }) {
 
           <button
             onClick={() => openModal(product, renderPictograms())}
-            className="text-purple-600 text-xl font-semibold mt-6 hover:text-purple-800 focus:outline-none "
+            className="text-purple-600 text-xl font-semibold mt-6 hover:text-purple-800 focus:outline-none mb-6 "
           >
             En savoir plus
           </button>
-
+          {images.length > 1 && (
+            <>
+              <FiChevronLeft
+                className="absolute top-1/2 left-0 transform -translate-y-1/2 cursor-pointer text-3xl text-gray-800 hover:text-purple-800 z-10"
+                onClick={prevImage}
+                style={{ top: "77%", left: "20%" }}
+              />
+              <FiChevronRight
+                className="absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer text-3xl text-gray-800 hover:text-purple-800 z-10"
+                onClick={nextImage}
+                style={{ top: "77%", right: "20%" }}
+              />
+            </>
+          )}
           <div className="flex-grow"></div>
           <div className="flex items-center mt-4">
             <p className="text-gray-800 font-semibold text-xl mr-2">

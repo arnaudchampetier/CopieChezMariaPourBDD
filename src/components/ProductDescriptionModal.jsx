@@ -41,19 +41,21 @@ function ProductDescriptionModal({
               <button
                 onClick={handlePrevImage}
                 className="absolute top-1/2 left-2 transform -translate-y-1/2 text-3xl text-gray-700 hover:text-gray-900 focus:outline-none"
+                style={{ top: "50%", left: "20%" }}
               >
                 {"<"}
               </button>
               <button
                 onClick={handleNextImage}
                 className="absolute top-1/2 right-2 transform -translate-y-1/2 text-3xl text-gray-700 hover:text-gray-900 focus:outline-none"
+                style={{ top: "50%", right: "20%" }}
               >
                 {">"}
               </button>
             </>
           )}
         </div>
-        <div className="mx-8">
+        <div className="mx-8 overflow-y-auto">
           {pictograms && pictograms.length > 0 && (
             <h2 className="font-larken text-2xl items-center justify-center flex mb-4">
               Label(s) qualité:
