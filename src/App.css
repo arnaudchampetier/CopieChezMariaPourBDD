@@ -108,10 +108,12 @@ span.active {
 
 
 
-/* Dans votre fichier CSS */
+/* Taille des cards et cards-bougies */
 .custom-product {
-  height: 500px; /* Définissez la hauteur souhaitée ici */
+  height: 550px; /* Définissez la hauteur souhaitée ici */
 }
+
+
 
 
 
@@ -123,7 +125,6 @@ span.active {
 
 
 
-
-
+  
 
 

@@ -2,6 +2,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      scale: {
+        200: "2",
+      },
       animation: {
         "text-gradient": "text 1.5s linear infinite",
       },
