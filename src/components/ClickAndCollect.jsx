@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import ProductCard from "./ProductCard";
 import Panier from "./Panier";
-import { db } from "../firebase"; // Importez db depuis votre fichier firebase.js
+import { db } from "../firebase";
 import "../App.css";
 
 function ClicAndCollect({ cartItems, setCartItems }) {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Epicerie sucrée");
   const [selectedFamily, setSelectedFamily] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
   const [familyList, setFamilyList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [allProducts, setAllProducts] = useState([]);
 
   const categories = [
     "Bébé",
@@ -24,9 +25,19 @@ function ClicAndCollect({ cartItems, setCartItems }) {
   ];
 
   useEffect(() => {
-    const fetchProductsByCategory = async () => {
+    const fetchProducts = async () => {
       const productRef = collection(db, "Click & Collect de Chez Maria");
-      const q = query(productRef, where("category", "==", selectedCategory));
+      let q;
+
+      if (selectedFamily) {
+        q = query(
+          productRef,
+          where("category", "==", selectedCategory),
+          where("famille", "==", selectedFamily)
+        );
+      } else {
+        q = query(productRef, where("category", "==", selectedCategory));
+      }
 
       try {
         const querySnapshot = await getDocs(q);
@@ -35,20 +46,61 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           ...doc.data(),
         }));
         setProducts(productsData);
-        console.log("Products:", productsData);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
       }
     };
 
-    fetchProductsByCategory();
-    setSelectedFamily(null); // Réinitialise la famille sélectionnée
-  }, [selectedCategory]);
+    fetchProducts();
+  }, [selectedCategory, selectedFamily]);
 
   useEffect(() => {
     // Mettez à jour la liste des familles lorsque la catégorie sélectionnée change
-    setFamilyList([...new Set(products.map((product) => product.famille))]);
-  }, [products]);
+    if (!selectedFamily) {
+      setFamilyList([...new Set(products.map((product) => product.famille))]);
+    }
+  }, [products, selectedCategory, selectedFamily]);
+
+  useEffect(() => {
+    // Stocker une copie de tous les produits non filtrés
+    const fetchAllProducts = async () => {
+      const productRef = collection(db, "Click & Collect de Chez Maria");
+
+      try {
+        const querySnapshot = await getDocs(productRef);
+        const allProductsData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setAllProducts(allProductsData);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération de tous les produits:",
+          error
+        );
+      }
+    };
+
+    fetchAllProducts();
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    // Filtrer les produits en fonction de la recherche globale
+    const globalFilteredProducts = allProducts.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Si aucun terme de recherche, utilisez les produits filtrés par catégorie ou famille
+    const finalProducts = searchTerm ? globalFilteredProducts : products;
+
+    // Mettez à jour la catégorie et la famille en fonction du premier produit trouvé
+    if (finalProducts.length > 0) {
+      setSelectedCategory(finalProducts[0].category);
+      setSelectedFamily(finalProducts[0].famille);
+    }
+
+    setProducts(finalProducts);
+  }, [searchTerm, allProducts, products]);
 
   const addToCart = (product) => {
     const updatedCartItems = [...cartItems];
@@ -82,25 +134,6 @@ function ClicAndCollect({ cartItems, setCartItems }) {
     setCartItems([]);
   };
 
-  const filteredProducts = products.filter((product) => {
-    const matchesCategory =
-      !selectedCategory || product.category === selectedCategory;
-    const matchesFamily = !selectedFamily || product.famille === selectedFamily;
-    const matchesSearchTerm =
-      !searchTerm ||
-      product.name.toLowerCase().includes(searchTerm.toLowerCase());
-
-    return matchesCategory && matchesFamily && matchesSearchTerm;
-  });
-
-  // Tri des familles alphabétiquement
-  const sortedFamilyList = [...familyList].sort((a, b) => a.localeCompare(b));
-
-  // Tri des produits alphabétiquement par nom
-  const sortedProducts = [...filteredProducts].sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
-
   return (
     <div className="mx-auto px-4 py-4 bg-red-100 " id="boutique">
       <h1 className="font-semplicita uppercase text-4xl mb-12 flex items-center justify-center animate-pulse cursor-pointer ">
@@ -113,7 +146,10 @@ function ClicAndCollect({ cartItems, setCartItems }) {
             className={`mb-2 xl:mb-0 cursor-pointer font-semplicita text-base xl:text-xl uppercase hover:text-red-400 ${
               selectedCategory === category ? "font-bold" : ""
             }`}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => {
+              setSelectedCategory(category);
+              setSelectedFamily(null);
+            }}
           >
             {category}
           </div>
@@ -121,25 +157,28 @@ function ClicAndCollect({ cartItems, setCartItems }) {
       </div>
 
       <div className="flex flex-wrap justify-center items-center mb-4 xl:mb-12">
-        {sortedFamilyList.map((family) => (
+        {familyList.map((family) => (
           <div
             key={family}
             className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-larken xl:text-xl ${
               selectedFamily === family ? "text-purple-700 " : ""
             }`}
-            onClick={() => setSelectedFamily(family)}
+            onClick={() => {
+              setSelectedFamily(family);
+              setSelectedCategory(
+                allProducts.find((product) => product.famille === family)
+                  ?.category || selectedCategory
+              );
+            }}
           >
             {family}
           </div>
         ))}
       </div>
 
+      {/* Barre de recherche globale */}
       <div className="mb-4 flex items-center justify-center">
-        <label
-          htmlFor="search"
-          className="mr-2 font-semplicita text-xl"
-          placeholder="Recherchez un produit"
-        >
+        <label htmlFor="search" className="mr-2 font-semplicita text-xl">
           Recherchez un produit :
         </label>
         <input
@@ -150,8 +189,10 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+
+      {/* Affichage des produits filtrés */}
       <div className="flex flex-wrap -mx-4 font-semplicita ">
-        {sortedProducts.map((product) => (
+        {products.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
@@ -159,6 +200,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           />
         ))}
       </div>
+
       <Panier
         cartItems={cartItems}
         setCartItems={setCartItems}
