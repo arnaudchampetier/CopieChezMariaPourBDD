@@ -5,6 +5,7 @@ import ProductDescriptionModal from "./ProductDescriptionModal";
 import goutezlardeche from "../assets/goutezmoica.png";
 import AB from "../assets/Agriculture-biologique.svg.png";
 import NP from "../assets/nature-et-progres.png";
+import Vegan from "../assets/veganlogo.png";
 
 function ProductCard({ product, addToCart }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -87,7 +88,13 @@ function ProductCard({ product, addToCart }) {
       product.composition.includes("Nature & Progrès")
     ) {
       pictograms.push(
-        <img key="NP" src={NP} alt="N&P" className="w-12 h-12 " />
+        <img key="NP" src={NP} alt="N&P" className="w-12 h-12 mb-4 " />
+      );
+    }
+
+    if (product.composition && product.composition.includes("Vegan")) {
+      pictograms.push(
+        <img key="Veg" src={Vegan} alt="Vegan" className="w-12 h-12 " />
       );
     }
 

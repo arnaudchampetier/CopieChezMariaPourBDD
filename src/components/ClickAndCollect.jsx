@@ -9,7 +9,10 @@ function ClicAndCollect({ cartItems, setCartItems }) {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Epicerie sucrée");
   const [selectedFamily, setSelectedFamily] = useState(null);
+  const [selectedSubFamily, setSelectedSubFamily] = useState(null);
+
   const [familyList, setFamilyList] = useState([]);
+  const [subFamilyList, setSubFamilyList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [allProducts, setAllProducts] = useState([]);
 
@@ -23,19 +26,30 @@ function ClicAndCollect({ cartItems, setCartItems }) {
     "Nos desserts maison (recettes de Maria)",
     "Traiteur",
   ];
-
   useEffect(() => {
     const fetchProducts = async () => {
       const productRef = collection(db, "Click & Collect de Chez Maria");
       let q;
 
       if (selectedFamily) {
-        q = query(
-          productRef,
-          where("category", "==", selectedCategory),
-          where("famille", "==", selectedFamily)
-        );
+        if (selectedSubFamily) {
+          // Si une sous-famille est sélectionnée, filtre également par celle-ci
+          q = query(
+            productRef,
+            where("category", "==", selectedCategory),
+            where("famille", "==", selectedFamily),
+            where("subFamille", "==", selectedSubFamily)
+          );
+        } else {
+          // Sinon, filtre uniquement par la famille
+          q = query(
+            productRef,
+            where("category", "==", selectedCategory),
+            where("famille", "==", selectedFamily)
+          );
+        }
       } else {
+        // Si aucune famille n'est sélectionnée, filtre uniquement par la catégorie
         q = query(productRef, where("category", "==", selectedCategory));
       }
 
@@ -46,20 +60,31 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           ...doc.data(),
         }));
         setProducts(productsData);
+
+        // Mettez à jour la liste des familles
+        if (!selectedFamily) {
+          setFamilyList([
+            ...new Set(productsData.map((product) => product.famille)),
+          ]);
+        }
+
+        // Mettez à jour la liste des sous-familles seulement si selectedFamily change
+        if (selectedFamily && !selectedSubFamily) {
+          setSubFamilyList([
+            ...new Set(
+              productsData
+                .filter((product) => product.famille === selectedFamily)
+                .map((product) => product.subFamille)
+            ),
+          ]);
+        }
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
       }
     };
 
     fetchProducts();
-  }, [selectedCategory, selectedFamily]);
-
-  useEffect(() => {
-    // Mettez à jour la liste des familles lorsque la catégorie sélectionnée change
-    if (!selectedFamily) {
-      setFamilyList([...new Set(products.map((product) => product.famille))]);
-    }
-  }, [products, selectedCategory, selectedFamily]);
+  }, [selectedCategory, selectedFamily, selectedSubFamily]);
 
   useEffect(() => {
     // Stocker une copie de tous les produits non filtrés
@@ -149,13 +174,13 @@ function ClicAndCollect({ cartItems, setCartItems }) {
             onClick={() => {
               setSelectedCategory(category);
               setSelectedFamily(null);
+              setSelectedSubFamily(null); // Ajoutez ceci pour réinitialiser la subFamille
             }}
           >
             {category}
           </div>
         ))}
       </div>
-
       <div className="flex flex-wrap justify-center items-center mb-4 xl:mb-12">
         {familyList.map((family) => (
           <div
@@ -169,13 +194,43 @@ function ClicAndCollect({ cartItems, setCartItems }) {
                 allProducts.find((product) => product.famille === family)
                   ?.category || selectedCategory
               );
+              setSelectedSubFamily(null); // Ajoutez ceci pour réinitialiser la subFamille
             }}
           >
             {family}
           </div>
         ))}
       </div>
-
+      {selectedFamily === "Bières" && (
+        <div className="flex flex-wrap justify-center items-center mb-4 xl:mb-12">
+          {subFamilyList.map((subFamily) => (
+            <div
+              key={subFamily}
+              className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-larken xl:text-xl ${
+                selectedSubFamily === subFamily ? "text-purple-700 " : ""
+              }`}
+              onClick={() => setSelectedSubFamily(subFamily)}
+            >
+              {subFamily}
+            </div>
+          ))}
+        </div>
+      )}
+      {selectedFamily === "Vins" && (
+        <div className="flex flex-wrap justify-center items-center mb-4 xl:mb-12">
+          {subFamilyList.map((subFamily) => (
+            <div
+              key={subFamily}
+              className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-larken xl:text-xl ${
+                selectedSubFamily === subFamily ? "text-purple-700 " : ""
+              }`}
+              onClick={() => setSelectedSubFamily(subFamily)}
+            >
+              {subFamily}
+            </div>
+          ))}
+        </div>
+      )}
       {/* Barre de recherche globale */}
       <div className="mb-4 flex items-center justify-center">
         <label htmlFor="search" className="mr-2 font-semplicita text-xl">
@@ -189,7 +244,20 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-
+      {/* Affichage du message d'avertissement pour la catégorie "Cave" */}
+      {selectedCategory === "Cave" && (
+        <div className="text-yellow-600 mb-4 flex items-center justify-center font-semplicita italic md:text-xl text-lg">
+          L'abus d'alcool est dangereux pour la santé, à consommer avec
+          modération.
+        </div>
+      )}{" "}
+      {/* Affichage du message d'avertissement pour la famille "Bougies" */}
+      {selectedFamily === "Bougies" && (
+        <div className="text-yellow-600 mb-4 flex items-center justify-center font-semplicita italic md:text-xl text-lg">
+          ⚠️ Nos jolies bougies partent très vite : demandez-nous si vos
+          senteurs préférées sont disponibles !
+        </div>
+      )}
       {/* Affichage des produits filtrés */}
       <div className="flex flex-wrap -mx-4 font-semplicita ">
         {products.map((product) => (
@@ -200,7 +268,6 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           />
         ))}
       </div>
-
       <Panier
         cartItems={cartItems}
         setCartItems={setCartItems}
