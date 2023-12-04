@@ -110,23 +110,13 @@ function ProductCard({ product, addToCart }) {
 
     return pictograms;
   };
-
   const images = [product.picture];
 
-  if (product.picture2) {
-    images.push(product.picture2);
-  }
-
-  if (product.picture3) {
-    console.log("Picture 3:", product.picture3);
-
-    images.push(product.picture3);
-  }
-
-  if (product.picture4) {
-    console.log("Picture 4:", product.picture4);
-
-    images.push(product.picture4);
+  for (let i = 2; i <= 8; i++) {
+    const picture = product[`picture${i}`];
+    if (picture) {
+      images.push(picture);
+    }
   }
 
   return (
@@ -158,7 +148,7 @@ function ProductCard({ product, addToCart }) {
                 onClick={() => openModal(product, renderPictograms())}
                 src={images[currentImageIndex]}
                 alt={product.name}
-                className="w-full h-auto max-w-full rounded hover:scale-110 transition-transform duration-500 mx-auto cursor-pointer"
+                className="w-full h-[200px] object-cover max-w-full rounded hover:scale-110 transition-transform duration-500 mx-auto cursor-pointer"
                 style={{ width: "80%" }}
               />
               <div className="ml-0 flex flex-col justify-center hover:scale-125 transition-transform duration-500 ">
@@ -175,11 +165,11 @@ function ProductCard({ product, addToCart }) {
                   htmlFor={`senteur-${product.id}`}
                   className="text-gray-900 font-semplicita uppercase font-bold"
                 >
-                  Choisissez une senteur :
+                  Choisissez une option :
                 </label>
                 <select
                   id={`senteur-${product.id}`}
-                  className="ml-2 px-2 py-1 border rounded font-larken "
+                  className="ml-0 px-2 py-1 border rounded font-semplicita "
                   value={selectedSenteur}
                   onChange={(e) => setSelectedSenteur(e.target.value)}
                 >
@@ -191,10 +181,11 @@ function ProductCard({ product, addToCart }) {
                 </select>
               </div>
             )}
+          <div className="flex-grow"></div>
 
           <button
             onClick={() => openModal(product, renderPictograms())}
-            className="text-purple-600 text-xl font-semibold mt-6 hover:text-purple-800 focus:outline-none mb-6 "
+            className="text-purple-600 text-xl font-semibold mt-6 my-auto hover:text-purple-800 focus:outline-none mb-6 "
           >
             En savoir plus
           </button>

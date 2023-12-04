@@ -9,23 +9,34 @@ function ProductDescriptionModal({
   handleSenteurChange,
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [selectedSenteur, setSelectedSenteur] = useState(/* initial value */);
+  const [selectedSenteur] = useState(/* initial value */);
+
+  // Dynamically load images based on product properties
+  const images = [];
+
+  if (product.picture) {
+    images.push(product.picture);
+  }
+  for (let i = 1; i <= 8; i++) {
+    const picture = product[`picture${i}`];
+    if (picture) {
+      images.push(picture);
+    }
+  }
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? (product.picture2 ? 1 : 0) : prevIndex - 1
+      prevIndex === 0 ? images.length - 1 : (prevIndex - 1) % images.length
     );
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === (product.picture2 ? 1 : 0) ? 0 : prevIndex + 1
-    );
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50">
-      <div className="bg-gray-200 opacity-95 p-4 rounded-lg shadow-xl md:w-3/4 lg:w-1/2 xl:w-2/3 2xl:w-1/2 md:mx-3 mx-5 sm:h-4/5 2xl:h-3/4 h-4/5 flex flex-col relative md:mt-32  ">
+      <div className="bg-yellow-100 opacity-95 p-4 rounded-lg shadow-xl md:w-3/4 lg:w-1/2 xl:w-2/3 2xl:w-1/2 md:mx-3 mx-5  2xl:h-3/4 h-[500px] flex flex-col relative md:mt-32   ">
         <button
           onClick={onClose}
           className="absolute top-0 right-0 m-2 text-red-600 hover:text-red-800 focus:outline-none cursor-pointer z-50"
@@ -35,11 +46,11 @@ function ProductDescriptionModal({
         </button>
         <div className="w-full h-1/2 flex flex-col justify-center items-center relative">
           <img
-            src={currentImageIndex === 0 ? product.picture : product.picture2}
+            src={images[currentImageIndex]}
             alt={product.name}
-            className="w-1/3 h-auto rounded mt-8 mb-9 hover:scale-125  transition-transform duration-1000"
+            className="w-1/3 h-auto rounded mt-8 mb-9 hover:scale-125 transition-transform duration-1000"
           />
-          {product.picture2 && (
+          {images.length > 1 && (
             <>
               <button
                 onClick={handlePrevImage}
@@ -77,7 +88,7 @@ function ProductDescriptionModal({
                 htmlFor={`senteur-${product.id}`}
                 className="text-gray-900 font-semplicita uppercase font-bold"
               >
-                Choisissez une senteur :
+                Choisissez une option :
               </label>
               <select
                 id={`senteur-${product.id}`}

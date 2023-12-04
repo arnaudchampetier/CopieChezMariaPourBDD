@@ -251,6 +251,15 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           modération.
         </div>
       )}{" "}
+      {selectedCategory === "Nos desserts maison (recettes de Maria)" && (
+        <div className="text-yellow-600 mb-4 flex items-center xl:mx-96 justify-center font-semplicita italic md:text-xl text-lg">
+          ⚠️ Nous réalisons chaque jour nous même nos desserts, issus du carnet
+          de recettes de Maria. Au vu de nos petites ressources, il est
+          difficile de vous proposer quotidiennement tous les desserts à la
+          carte. De ce fait : n’hésitez pas à nous demander les desserts
+          disponibles du jour !
+        </div>
+      )}{" "}
       {/* Affichage du message d'avertissement pour la famille "Bougies" */}
       {selectedFamily === "Bougies" && (
         <div className="text-yellow-600 mb-4 flex items-center justify-center font-semplicita italic md:text-xl text-lg">
