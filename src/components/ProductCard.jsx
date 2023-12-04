@@ -64,7 +64,7 @@ function ProductCard({ product, addToCart }) {
           key="organic"
           src={AB}
           alt="Produit biologique"
-          className="w-12 h-12  mb-4"
+          className="w-10 h-10 2xl:w-12 2xl:h-12  mb-4"
         />
       );
     }
@@ -78,7 +78,7 @@ function ProductCard({ product, addToCart }) {
           key="ardeche"
           src={goutezlardeche}
           alt="Goûtez l'Ardèche"
-          className="w-12 h-12 "
+          className="w-10 h-10 2xl:w-12 2xl:h-12 "
         />
       );
     }
@@ -88,13 +88,23 @@ function ProductCard({ product, addToCart }) {
       product.composition.includes("Nature & Progrès")
     ) {
       pictograms.push(
-        <img key="NP" src={NP} alt="N&P" className="w-12 h-12 mb-4 " />
+        <img
+          key="NP"
+          src={NP}
+          alt="N&P"
+          className="w-10 h-10 2xl:w-12 2xl:h-12 mb-4 "
+        />
       );
     }
 
     if (product.composition && product.composition.includes("Vegan")) {
       pictograms.push(
-        <img key="Veg" src={Vegan} alt="Vegan" className="w-12 h-12 " />
+        <img
+          key="Veg"
+          src={Vegan}
+          alt="Vegan"
+          className="w-10 h-10 2xl:w-12 2xl:h-12 "
+        />
       );
     }
 
@@ -120,10 +130,17 @@ function ProductCard({ product, addToCart }) {
   }
 
   return (
-    <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/6 px-4 mb-8 mt-8 ">
-      <div className="xl:hover:scale-110 transition-transform duration-500">
+    <div
+      className={`w-full md:w-1/2 lg:w-1/3 xl:w-1/6 px-4 mb-8 mt-8 ${
+        product.famille === "Bougies" ? "xl:mx-12 2xl:mx-6 mx-4" : ""
+      }`}
+    >
+      {" "}
+      <div className="xl:hover:scale-110 transition-transform duration-500 ">
         <div
-          className={`custom-product bg-gray-100 p-4 rounded-xl shadow-xl flex flex-col overflow-y-auto transition-transform duration-1500 transform-gpu`}
+          className={`custom-product bg-gray-100 p-4 rounded-xl shadow-xl flex flex-col overflow-y-auto transition-transform duration-1500 transform-gpu ${
+            product.famille === "Bougies" ? "bougies-card" : ""
+          }`}
         >
           <h3 className="text-lg font-semibold mt-2 mb-3">
             {product.name}{" "}
@@ -137,7 +154,6 @@ function ProductCard({ product, addToCart }) {
           <div className="relative flex items-center">
             <div className="flex items-center">
               {" "}
-              {/* Utilise la classe 'flex' ici */}
               <img
                 onClick={() => openModal(product, renderPictograms())}
                 src={images[currentImageIndex]}
@@ -147,7 +163,6 @@ function ProductCard({ product, addToCart }) {
               />
               <div className="ml-0 flex flex-col justify-center hover:scale-125 transition-transform duration-500 ">
                 {" "}
-                {/* Utilise la classe 'flex-col' ici */}
                 {renderPictograms()}
               </div>
             </div>
@@ -155,7 +170,7 @@ function ProductCard({ product, addToCart }) {
           {product.senteurs &&
             Array.isArray(product.senteurs) &&
             product.senteurs.length > 1 && (
-              <div className="mt-1">
+              <div className="mt-2">
                 <label
                   htmlFor={`senteur-${product.id}`}
                   className="text-gray-900 font-semplicita uppercase font-bold"

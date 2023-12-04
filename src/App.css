@@ -108,12 +108,18 @@ span.active {
 
 
 
-/* Taille des cards et cards-bougies */
+/* Taille des cards  */
 .custom-product {
   height: 550px; /* Définissez la hauteur souhaitée ici */
 }
 
+/*  ajuster la hauteur des cartes Bougies */
+.bougies-card {
+  height: 700px; /* Ajustement hauteur et largeyr pour les cartes Bougies */
+  width: 290px;
 
+  
+}
 
 
 

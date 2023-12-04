@@ -164,7 +164,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
       <h1 className="font-semplicita uppercase text-4xl mb-12 flex items-center justify-center animate-pulse cursor-pointer ">
         Nos produits en Click & Collect
       </h1>
-      <div className="mb-12 flex flex-wrap justify-center items-center gap-2 xl:gap-8">
+      <div className="mb-12 flex flex-wrap justify-center items-center gap-2 xl:gap-6">
         {categories.map((category) => (
           <div
             key={category}

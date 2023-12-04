@@ -28,7 +28,8 @@ function ProductDescriptionModal({
       <div className="bg-gray-200 opacity-95 p-4 rounded-lg shadow-xl md:w-3/4 lg:w-1/2 xl:w-2/3 2xl:w-1/2 md:mx-3 mx-5 sm:h-4/5 2xl:h-3/4 h-4/5 flex flex-col relative md:mt-32  ">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-red-600 hover:text-red-800 focus:outline-none cursor-pointer"
+          className="absolute top-0 right-0 m-2 text-red-600 hover:text-red-800 focus:outline-none cursor-pointer z-50"
+          style={{ cursor: "pointer" }}
         >
           <MdCancel size={30} />
         </button>
