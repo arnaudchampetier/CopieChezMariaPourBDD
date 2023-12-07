@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi"; // Importez les icônes de flèches de react-icons
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import "../App.css";
 import ProductDescriptionModal from "./ProductDescriptionModal";
 import goutezlardeche from "../assets/goutezmoica.png";
@@ -17,10 +17,16 @@ function ProductCard({ product, addToCart }) {
       ? product.senteurs[0]
       : null
   );
+  const [senteursSoldOut, setSenteursSoldOut] = useState(/* initialisation */);
+
   const openModal = (product, pictograms) => {
     setSelectedProduct(product);
     setSelectedPictograms(pictograms);
     setModalOpen(true);
+  };
+
+  const isSenteurSoldOut = (senteur) => {
+    return senteur && senteur.startsWith("SOLDOUT_");
   };
 
   const renderSenteurs = () => {
@@ -29,11 +35,17 @@ function ProductCard({ product, addToCart }) {
       Array.isArray(product.senteurs) &&
       product.senteurs.length > 0
     ) {
-      return product.senteurs.map((senteur, index) => (
-        <span key={index} className="mr-2">
-          {senteur}
-        </span>
-      ));
+      return product.senteurs.map((senteur, index) => {
+        const displayedSenteur = senteur.startsWith("SOLDOUT_")
+          ? senteur.substring(8)
+          : senteur;
+
+        return (
+          <span key={index} className="mr-2">
+            {displayedSenteur}
+          </span>
+        );
+      });
     }
     return null;
   };
@@ -110,8 +122,8 @@ function ProductCard({ product, addToCart }) {
 
     return pictograms;
   };
-  const images = [product.picture];
 
+  const images = [product.picture];
   for (let i = 2; i <= 8; i++) {
     const picture = product[`picture${i}`];
     if (picture) {
@@ -125,25 +137,23 @@ function ProductCard({ product, addToCart }) {
         product.famille === "Bougies" ? "xl:mx-12 2xl:mx-6 mx-4" : ""
       }`}
     >
-      {" "}
       <div className="xl:hover:scale-110 transition-transform duration-500 ">
         <div
           className={`custom-product bg-gray-100 p-4 rounded-xl shadow-xl flex flex-col overflow-y-auto transition-transform duration-1500 transform-gpu ${
             product.famille === "Bougies" ? "bougies-card" : ""
           }`}
         >
-          <h3 className="text-lg font-semibold mt-2 mb-3">
+          <h1 className="text-lg font-semibold mt-2 mb-3 ">
             {product.name}{" "}
             {product.contenance ? (
               <span className="font-normal">({product.contenance})</span>
             ) : null}
-          </h3>
+          </h1>
 
           <div className="flex-grow"></div>
 
           <div className="relative flex items-center">
             <div className="flex items-center">
-              {" "}
               <img
                 onClick={() => openModal(product, renderPictograms())}
                 src={images[currentImageIndex]}
@@ -152,11 +162,11 @@ function ProductCard({ product, addToCart }) {
                 style={{ width: "80%" }}
               />
               <div className="ml-0 flex flex-col justify-center hover:scale-125 transition-transform duration-500 ">
-                {" "}
                 {renderPictograms()}
               </div>
             </div>
           </div>
+
           {product.senteurs &&
             Array.isArray(product.senteurs) &&
             product.senteurs.length > 1 && (
@@ -173,14 +183,27 @@ function ProductCard({ product, addToCart }) {
                   value={selectedSenteur}
                   onChange={(e) => setSelectedSenteur(e.target.value)}
                 >
-                  {product.senteurs.map((senteur) => (
-                    <option key={senteur} value={senteur}>
-                      {senteur}
-                    </option>
-                  ))}
+                  {product.senteurs.map((senteur) => {
+                    const senteurKey = `SOLDOUT_${senteur}`;
+                    const isSoldOut = senteur.startsWith("SOLDOUT_");
+                    const displayedSenteur = isSoldOut
+                      ? `En rupture: ${senteur.substring(8)}`
+                      : senteur;
+
+                    return (
+                      <option
+                        key={senteurKey}
+                        value={isSoldOut ? null : senteur}
+                        disabled={isSoldOut}
+                      >
+                        {displayedSenteur}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             )}
+
           <div className="flex-grow"></div>
 
           <button
@@ -189,6 +212,7 @@ function ProductCard({ product, addToCart }) {
           >
             En savoir plus
           </button>
+
           {images.length > 1 && (
             <>
               <FiChevronLeft
@@ -205,6 +229,7 @@ function ProductCard({ product, addToCart }) {
           )}
 
           <div className="flex-grow"></div>
+
           <div className="flex items-center mt-0">
             <p className="text-gray-800 font-semibold text-xl mr-2">
               Prix :{" "}
@@ -214,25 +239,27 @@ function ProductCard({ product, addToCart }) {
               €
             </p>
 
-            {product.isSoldOut && (
+            {isSenteurSoldOut(selectedSenteur) && (
               <p className="ml-auto text-red-500 font-semibold">En rupture</p>
             )}
           </div>
 
           <button
             onClick={() => {
-              if (!product.isSoldOut) {
+              if (!isSenteurSoldOut(selectedSenteur)) {
                 addToCart(product);
               }
             }}
-            disabled={product.isSoldOut}
+            disabled={isSenteurSoldOut(selectedSenteur)}
             className={`${
-              product.isSoldOut
+              isSenteurSoldOut(selectedSenteur)
                 ? "bg-gray-300 cursor-not-allowed"
                 : "bg-cyan-900"
             } text-white px-4 py-2 mt-2 rounded hover:bg-purple-700`}
           >
-            {product.isSoldOut ? "En rupture" : "Ajouter au panier"}
+            {isSenteurSoldOut(selectedSenteur)
+              ? "En rupture"
+              : "Ajouter au panier"}
           </button>
         </div>
       </div>
@@ -242,9 +269,12 @@ function ProductCard({ product, addToCart }) {
           pictograms={selectedPictograms}
           onClose={() => setModalOpen(false)}
           onAddToCart={() => {
-            addToCart(selectedProduct);
-            setModalOpen(false);
+            if (!isSenteurSoldOut(selectedSenteur)) {
+              addToCart(selectedProduct);
+              setModalOpen(false);
+            }
           }}
+          senteursSoldOut={senteursSoldOut} // Assurez-vous de passer senteursSoldOut ici
         />
       )}
     </div>

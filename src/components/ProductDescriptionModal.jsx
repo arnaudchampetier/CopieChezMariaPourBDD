@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdCancel } from "react-icons/md";
 
 function ProductDescriptionModal({
@@ -7,11 +7,11 @@ function ProductDescriptionModal({
   onClose,
   onAddToCart,
   handleSenteurChange,
+  senteursSoldOut,
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [selectedSenteur] = useState(/* initial value */);
+  const [selectedSenteur, setSelectedSenteur] = useState(null);
 
-  // Dynamically load images based on product properties
   const images = [];
 
   if (product.picture) {
@@ -34,9 +34,23 @@ function ProductDescriptionModal({
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
+  useEffect(() => {
+    if (product.senteurs && product.senteurs.length > 0) {
+      const availableSenteurs = product.senteurs.filter(
+        (senteur) => !senteursSoldOut?.includes(senteur)
+      );
+      setSelectedSenteur(
+        availableSenteurs.length > 0 ? availableSenteurs[0] : null
+      );
+    }
+  }, [senteursSoldOut, product.senteurs]);
+
+  const isProductSoldOut =
+    product.isSoldOut || senteursSoldOut?.includes(selectedSenteur);
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50">
-      <div className="bg-yellow-100 opacity-95 p-4 rounded-lg shadow-xl md:w-3/4 lg:w-1/2 xl:w-2/3 2xl:w-1/2 md:mx-3 mx-5  2xl:h-3/4 h-[500px] flex flex-col relative md:mt-32   ">
+      <div className="bg-yellow-100 opacity-95 p-4 rounded-lg shadow-xl md:w-3/4 lg:w-1/2 xl:w-2/3 2xl:w-1/2 md:mx-3 mx-5  2xl:h-3/4 h-[500px] flex flex-col relative md:mt-32">
         <button
           onClick={onClose}
           className="absolute top-0 right-0 m-2 text-red-600 hover:text-red-800 focus:outline-none cursor-pointer z-50"
@@ -78,7 +92,6 @@ function ProductDescriptionModal({
           <div className="flex items-center justify-center hover:scale-125 transition-transform duration-1000 mx-auto space-x-4">
             {pictograms}
           </div>
-
           <h3 className="text-lg font-semibold mb-8 mt-8">
             {product.name} {selectedSenteur ? `(${selectedSenteur})` : ""}
           </h3>
@@ -93,12 +106,18 @@ function ProductDescriptionModal({
               <select
                 id={`senteur-${product.id}`}
                 className="ml-2 px-2 py-1 border font-larken rounded mb-4"
-                value={selectedSenteur}
-                onChange={handleSenteurChange}
+                value={selectedSenteur || ""}
+                onChange={(e) => setSelectedSenteur(e.target.value)}
               >
                 {product.senteurs.map((senteur) => (
-                  <option key={senteur} value={senteur}>
-                    {senteur}
+                  <option
+                    key={senteur}
+                    value={senteur}
+                    disabled={senteur.startsWith("SOLDOUT_")}
+                  >
+                    {senteur.startsWith("SOLDOUT_")
+                      ? `En rupture: ${senteur.substring(8)}`
+                      : senteur}
                   </option>
                 ))}
               </select>
@@ -108,15 +127,15 @@ function ProductDescriptionModal({
             {product.description}
           </p>
         </div>
-        <div className="flex-grow"></div>{" "}
+        <div className="flex-grow"></div>
         <button
           onClick={onAddToCart}
-          disabled={product.isSoldOut}
+          disabled={isProductSoldOut}
           className={`${
-            product.isSoldOut ? "bg-gray-300 cursor-not-allowed" : "bg-cyan-900"
+            isProductSoldOut ? "bg-gray-300 cursor-not-allowed" : "bg-cyan-900"
           } text-white px-4 py-2 mt-2 rounded hover:bg-purple-700 md:w-1/4 mx-auto`}
         >
-          {product.isSoldOut ? "En rupture" : "Ajouter au panier"}
+          {isProductSoldOut ? "En rupture" : "Ajouter au panier"}
         </button>
       </div>
     </div>

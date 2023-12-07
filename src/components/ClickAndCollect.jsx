@@ -17,14 +17,15 @@ function ClicAndCollect({ cartItems, setCartItems }) {
   const [allProducts, setAllProducts] = useState([]);
 
   const categories = [
-    "Bébé",
-    "Cave",
-    "Déco & Maison",
     "Epicerie salée",
     "Epicerie sucrée",
-    "Hygiène",
     "Nos desserts maison (recettes de Maria)",
     "Traiteur",
+    "Cave",
+    "NOËL",
+    "Déco & Maison",
+    "Hygiène",
+    "Bébé",
   ];
   useEffect(() => {
     const fetchProducts = async () => {
@@ -185,7 +186,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
         {familyList.map((family) => (
           <div
             key={family}
-            className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-larken xl:text-xl ${
+            className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-larken  xl:text-xl ${
               selectedFamily === family ? "text-purple-700 " : ""
             }`}
             onClick={() => {
@@ -206,7 +207,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           {subFamilyList.map((subFamily) => (
             <div
               key={subFamily}
-              className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-larken xl:text-xl ${
+              className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-cinzel xl:text-xl ${
                 selectedSubFamily === subFamily ? "text-purple-700 " : ""
               }`}
               onClick={() => setSelectedSubFamily(subFamily)}
@@ -221,7 +222,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
           {subFamilyList.map((subFamily) => (
             <div
               key={subFamily}
-              className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-larken xl:text-xl ${
+              className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-cinzel xl:text-xl ${
                 selectedSubFamily === subFamily ? "text-purple-700 " : ""
               }`}
               onClick={() => setSelectedSubFamily(subFamily)}
