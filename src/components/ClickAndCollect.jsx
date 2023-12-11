@@ -113,7 +113,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
   useEffect(() => {
     // Filtrer les produits en fonction de la recherche globale
     const globalFilteredProducts = allProducts.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      (product.name ?? "").toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     // Si aucun terme de recherche, utilisez les produits filtrés par catégorie ou famille
