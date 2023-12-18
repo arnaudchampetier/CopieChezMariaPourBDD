@@ -6,6 +6,7 @@ import goutezlardeche from "../assets/goutezmoica.png";
 import AB from "../assets/Agriculture-biologique.svg.png";
 import NP from "../assets/nature-et-progres.png";
 import Vegan from "../assets/veganlogo.png";
+import NoImage from "../assets/pasdimage.png";
 
 function ProductCard({ product, addToCart }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -28,6 +29,8 @@ function ProductCard({ product, addToCart }) {
   const isSenteurSoldOut = (senteur) => {
     return senteur && senteur.startsWith("SOLDOUT_");
   };
+  const isProductSoldOut =
+    product.isSoldOut || isSenteurSoldOut(selectedSenteur);
 
   const renderSenteurs = () => {
     if (
@@ -156,11 +159,13 @@ function ProductCard({ product, addToCart }) {
             <div className="flex items-center">
               <img
                 onClick={() => openModal(product, renderPictograms())}
-                src={images[currentImageIndex]}
+                src={images[currentImageIndex] || NoImage}
                 alt={product.name}
-                className="w-full h-[200px] object-cover max-w-full rounded hover:scale-110 transition-transform duration-500 mx-auto cursor-pointer"
-                style={{ width: "80%" }}
+                className={`w-full object-cover rounded hover:scale-110 transition-transform duration-500 mx-auto cursor-pointer ${
+                  !images[currentImageIndex] ? "max-w-[150px] h-auto" : ""
+                }`}
               />
+
               <div className="ml-0 flex flex-col justify-center hover:scale-125 transition-transform duration-500 ">
                 {renderPictograms()}
               </div>
@@ -246,20 +251,18 @@ function ProductCard({ product, addToCart }) {
 
           <button
             onClick={() => {
-              if (!isSenteurSoldOut(selectedSenteur)) {
+              if (!isProductSoldOut) {
                 addToCart(product);
               }
             }}
-            disabled={isSenteurSoldOut(selectedSenteur)}
+            disabled={isProductSoldOut}
             className={`${
-              isSenteurSoldOut(selectedSenteur)
+              isProductSoldOut
                 ? "bg-gray-300 cursor-not-allowed"
                 : "bg-cyan-900"
             } text-white px-4 py-2 mt-2 rounded hover:bg-purple-700`}
           >
-            {isSenteurSoldOut(selectedSenteur)
-              ? "En rupture"
-              : "Ajouter au panier"}
+            {isProductSoldOut ? "En rupture" : "Ajouter au panier"}
           </button>
         </div>
       </div>
