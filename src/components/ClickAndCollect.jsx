@@ -7,15 +7,6 @@ import "../App.css";
 
 function ClicAndCollect({ cartItems, setCartItems }) {
   const [products, setProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("Epicerie sucrée");
-  const [selectedFamily, setSelectedFamily] = useState(null);
-  const [selectedSubFamily, setSelectedSubFamily] = useState(null);
-
-  const [familyList, setFamilyList] = useState([]);
-  const [subFamilyList, setSubFamilyList] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [allProducts, setAllProducts] = useState([]);
-
   const categories = [
     "Epicerie salée",
     "Epicerie sucrée",
@@ -27,6 +18,15 @@ function ClicAndCollect({ cartItems, setCartItems }) {
     "Hygiène",
     "Bébé",
   ];
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [selectedFamily, setSelectedFamily] = useState(null);
+  const [selectedSubFamily, setSelectedSubFamily] = useState(null);
+
+  const [familyList, setFamilyList] = useState([]);
+  const [subFamilyList, setSubFamilyList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [allProducts, setAllProducts] = useState([]);
+
   useEffect(() => {
     const fetchProducts = async () => {
       const productRef = collection(db, "Click & Collect de Chez Maria");
