@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import BasketIcon from "../assets/basket.png";
 import { MdAddCircle, MdRemoveCircle, MdCancel } from "react-icons/md"; // Material Icons
 import CommandePopUp from "./CommandePopUp"; // Importez le composant CommandePopup
+import NoImage from "../assets/pasdimage.png";
 
 export const calculateTotal = (cartItems) => {
   const total = cartItems.reduce(
@@ -96,49 +97,54 @@ function Panier({ cartItems, setCartItems, updateQuantity, clearCart }) {
         <img src={BasketIcon} alt="Panier" className="w-8 h-8 mr-2" />
         Votre Panier
       </h2>
-      <ul className="space-y-2">
-        {localCartItems.map((item) => (
-          <li key={item.id} className="flex justify-between items-center">
-            <div className="flex justify-between items-center">
-              <div>
-                <span className="text-xl font-light font-semplicita italic">
-                  {item.name}
-                </span>
-                <span className="text-gray-500 ml-2">{item.price} €</span>
-              </div>
-              <img
-                src={item.picture} // Ajoutez la source de l'image miniature ici
-                alt={item.name}
-                className="w-16 h-16 transform transition-transform duration-1000 hover:scale-150 rounded ml-2"
-              />
-            </div>
 
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => modifyQuantity(item.id, -1)}
-                className="text-black-600 hover:text-red-800  hover:bg-red-200 focus:outline-none px-2 py-1 rounded-full"
-              >
-                <MdRemoveCircle size={32} />
-              </button>
-              <span className="text-lg">{item.quantity}</span>
-              <button
-                onClick={() => modifyQuantity(item.id, 1)}
-                className="text-green-600 hover:text-green-800 bg-green-100 hover:bg-green-200 focus:outline-none px-2 py-1 rounded-full"
-              >
-                <MdAddCircle size={32} />
-              </button>
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className="text-red-600 hover:text-red-800 bg-red-100 hover:bg-red-200 focus:outline-none px-2 py-1 rounded-full"
-              >
-                <MdCancel size={24} />
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-      {localCartItems.length > 0 && (
+      {localCartItems.length === 0 ? (
         <>
+          <p>Votre panier est actuellement vide 🥲.</p>
+        </>
+      ) : (
+        <>
+          <ul className="space-y-2">
+            {localCartItems.map((item) => (
+              <li key={item.id} className="flex justify-between items-center">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <span className="text-xl font-light font-semplicita italic">
+                      {item.name}
+                    </span>
+                    <span className="text-gray-500 ml-2">{item.price} €</span>
+                  </div>
+                  <img
+                    src={item.picture || NoImage}
+                    alt={item.name}
+                    className="w-16 h-16 transform transition-transform duration-1000 hover:scale-150 rounded ml-2"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => modifyQuantity(item.id, -1)}
+                    className="text-black-600 hover:text-red-800  hover:bg-red-200 focus:outline-none px-2 py-1 rounded-full"
+                  >
+                    <MdRemoveCircle size={32} />
+                  </button>
+                  <span className="text-lg">{item.quantity}</span>
+                  <button
+                    onClick={() => modifyQuantity(item.id, 1)}
+                    className="text-green-600 hover:text-green-800 bg-green-100 hover:bg-green-200 focus:outline-none px-2 py-1 rounded-full"
+                  >
+                    <MdAddCircle size={32} />
+                  </button>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-red-600 hover:text-red-800 bg-red-100 hover:bg-red-200 focus:outline-none px-2 py-1 rounded-full"
+                  >
+                    <MdCancel size={24} />
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
           <p className="mt-8 text-lg font-larken">
             Total : {calculateTotal()} €
           </p>
@@ -173,5 +179,4 @@ function Panier({ cartItems, setCartItems, updateQuantity, clearCart }) {
     </div>
   );
 }
-
 export default Panier;

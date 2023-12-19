@@ -69,6 +69,7 @@ function ProductCard({ product, addToCart }) {
 
   const renderPictograms = () => {
     const pictograms = [];
+    console.log("Composition:", product.composition);
 
     if (
       product.composition &&
@@ -161,7 +162,7 @@ function ProductCard({ product, addToCart }) {
                 onClick={() => openModal(product, renderPictograms())}
                 src={images[currentImageIndex] || NoImage}
                 alt={product.name}
-                className={`w-full object-cover rounded hover:scale-110 transition-transform duration-500 mx-auto cursor-pointer ${
+                className={`w-5/6 object-cover rounded hover:scale-110 transition-transform duration-500 mx-auto cursor-pointer ${
                   !images[currentImageIndex] ? "max-w-[150px] h-auto" : ""
                 }`}
               />
