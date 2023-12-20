@@ -18,7 +18,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
     "Hygiène",
     "Bébé",
   ];
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedFamily, setSelectedFamily] = useState(null);
   const [selectedSubFamily, setSelectedSubFamily] = useState(null);
 
