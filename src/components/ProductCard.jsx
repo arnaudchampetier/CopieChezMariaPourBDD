@@ -69,7 +69,6 @@ function ProductCard({ product, addToCart }) {
 
   const renderPictograms = () => {
     const pictograms = [];
-    console.log("Composition:", product.composition);
 
     if (
       product.composition &&
