@@ -111,6 +111,7 @@ function Panier({ cartItems, setCartItems, updateQuantity, clearCart }) {
                   <div>
                     <span className="text-xl font-light font-semplicita italic">
                       {item.name}
+                      {item.senteur && ` (${item.senteur})`}
                     </span>
                     <span className="text-gray-500 ml-2">{item.price} €</span>
                   </div>

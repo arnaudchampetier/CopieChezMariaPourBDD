@@ -128,21 +128,30 @@ function ClicAndCollect({ cartItems, setCartItems }) {
     setProducts(finalProducts);
   }, [searchTerm, allProducts, products]);
 
-  const addToCart = (product) => {
-    const updatedCartItems = [...cartItems];
-    const productIndex = updatedCartItems.findIndex(
-      (item) => item.id === product.id
+  const addToCart = (product, selectedSenteur) => {
+    // Copiez le panier actuel
+    const updatedCart = [...cartItems];
+
+    // Vérifiez si le produit avec la même senteur est déjà dans le panier
+    const existingProductIndex = updatedCart.findIndex(
+      (item) => item.id === product.id && item.senteur === selectedSenteur
     );
 
-    if (productIndex !== -1) {
-      updatedCartItems[productIndex].quantity += 1;
+    if (existingProductIndex !== -1) {
+      // Le produit avec la même senteur est déjà dans le panier, mettez à jour la quantité
+      updatedCart[existingProductIndex].quantity += 1;
     } else {
-      const newCartItem = { ...product, quantity: 1 };
-      updatedCartItems.push(newCartItem);
+      // Le produit avec la même senteur n'est pas encore dans le panier, ajoutez-le
+      const productToAdd = {
+        ...product,
+        quantity: 1,
+        senteur: selectedSenteur, // Ajoutez la senteur au produit
+      };
+      updatedCart.push(productToAdd);
     }
 
-    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
-    setCartItems(updatedCartItems);
+    // Mettez à jour le panier global
+    setCartItems(updatedCart);
   };
 
   const updateQuantity = (productId, quantity) => {

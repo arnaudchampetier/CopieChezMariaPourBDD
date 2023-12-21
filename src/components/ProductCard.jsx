@@ -252,7 +252,7 @@ function ProductCard({ product, addToCart }) {
           <button
             onClick={() => {
               if (!isProductSoldOut) {
-                addToCart(product);
+                addToCart(product, selectedSenteur); // Ajout de la senteur sélectionnée
               }
             }}
             disabled={isProductSoldOut}
