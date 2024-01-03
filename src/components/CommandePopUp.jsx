@@ -51,13 +51,18 @@ function CommandePopUp({ isOpen, onClose, onConfirm, cartItems }) {
           Récapitulatif de votre commande :
         </h3>
         {cartItems.map((item) => (
-          <div key={item.id} className="flex justify-between mb-2 ">
+          <div
+            key={item.id}
+            className="flex justify-between mb-2 font-semplicita"
+          >
             <span>
-              {item.name} (Quantité: {item.quantity})
+              {item.name} {item.senteur && `(Senteur: ${item.senteur})`}{" "}
+              (Quantité: {item.quantity})
             </span>
             <span>{item.price * item.quantity} €</span>
           </div>
         ))}
+
         <div className="font-bold mt-2">Total : {total.toFixed(2)} €</div>
       </div>
       <div className="mb-4">

@@ -3,29 +3,27 @@ import { CardElement } from "@stripe/react-stripe-js";
 import { calculateTotal } from "./Panier";
 
 const CheckoutForm = ({ cartItems }) => {
-  const stripe = useStripe(); // Utilisez useStripe pour obtenir l'objet Stripe
-  const elements = useElements(); // Utilisez useElements pour obtenir les éléments Stripe
+  const stripe = useStripe();
+  const elements = useElements();
 
-  const totalAmount = calculateTotal(cartItems); // Use your calculation function
+  const totalAmount = calculateTotal(cartItems);
   console.log("montant total calculé:", totalAmount);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log("Form submitted");
 
-    // Obtenez les éléments du formulaire
     const cardholderNameElement = document.getElementById("cardholder-name");
     const emailElement = document.getElementById("user_email");
-    console.log("Email Element VERIFICATION :", emailElement.value); // Vérifiez si emailElement est correct
+    console.log("Email Element VERIFICATION :", emailElement.value);
 
-    // Vérifiez si les éléments existent avant d'accéder à leurs valeurs
     if (cardholderNameElement && emailElement) {
       const cardholderName = cardholderNameElement.value;
-      const email = emailElement.value;
+      const email = emailElement.value.trim();
       console.log("Cardholder Name:", cardholderName);
       console.log("Email:", email);
-      // Convertissez le montant en centimes
-      const totalAmountInEuros = calculateTotal(cartItems); // Utilisez votre propre méthode pour obtenir le montant total
+
+      const totalAmountInEuros = calculateTotal(cartItems);
       const totalAmountInCents = Math.round(totalAmountInEuros * 100);
 
       try {
@@ -40,7 +38,6 @@ const CheckoutForm = ({ cartItems }) => {
               cardholderName,
               email,
               totalAmount: totalAmountInCents,
-              // Les données à envoyer, le cas échéant
             }),
           }
         );
@@ -51,29 +48,29 @@ const CheckoutForm = ({ cartItems }) => {
         }
 
         const { clientSecret } = await response.json();
-
-        // Créez un élément Stripe avec l'objet Stripe initialisé
         const cardElement = elements.getElement(CardElement);
 
-        // Confirmez le paiement avec le clientSecret
         const result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
             card: cardElement,
             billing_details: {
               name: cardholderName,
               email: email,
-              // Vous pouvez ajouter des détails de facturation si nécessaire
             },
           },
         });
 
         if (result.error) {
-          console.log("Payment error:", result.error);
+          console.error("Payment error:", result.error);
         } else {
           console.log("Payment succeeded");
         }
       } catch (error) {
-        console.log("CheckoutForm error:", error);
+        console.error("Error in handleFormSubmit:", error);
+
+        if (error.response && error.response.data) {
+          console.error("Stripe Error Details:", error.response.data);
+        }
       }
     } else {
       console.log(

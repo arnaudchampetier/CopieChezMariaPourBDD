@@ -145,9 +145,21 @@ function Main() {
 
           <p className="text-sm md:text-lg text-center text-gray-700 mb-4 md:my-12 lg:mx-96 my-8 font-semplicita">
             Installée au 21 Cours Vitton dans le 6ème arrondissement de Lyon,
-            Chez Maria vous ouvre les portes de l’Ardèche. Nous sommes fiers de
-            vous faire découvrir ou redécouvrir, l’espace d’un instant, les
-            trésors que nous offre ce magnifique département.
+            “chez Maria” vous ouvre les portes de l’Ardèche. Découvrez toutes
+            les plus belles créations artisanales et goûtez aux saveurs du
+            terroir ardéchois ! <br /> <br />
+            Maria ? ​​​​👵​ C’était mon arrière-grand-mère. Elle a quitté
+            l’Ardèche dans les années 30 pour travailler comme cuisinière dans
+            les plus belles maisons lyonnaises. Cet amour pour la cuisine, elle
+            a su le transmettre à ma grand-mère, ma mère, puis à moi.
+            Aujourd’hui, je suis fière de vous faire découvrir ou redécouvrir,
+            l’espace d’un instant, les trésors de l’Ardèche. <br /> <br />
+            Nos valeurs ? ​​​​💫​ ​​📍​ Du LOCAL : consommer ce qui se trouve à
+            côté de chez vous, c’est quand même plus éthique et c’est meilleur !
+            ​​​🌟​ Du VRAI : chez nous tout est artisanal, ciao les colorants et
+            arômes artificiels ! ​​​❤️​ Du GOÛT : “j’ai retrouvé le goût de mon
+            enfance” voilà le plus beau des compliments qu’on a pu nous faire à
+            l’épicerie
           </p>
           <img
             src={Arrow}
@@ -168,25 +180,30 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start bg-navbar  lg:h-142 ">
-              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-3xl font-larken  tracking-tight text-black  ">
-                Epicerie Fine{" "}
+              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-3xl font-larken tracking-tight text-black">
+                Epicerie
+                <br />
+                🌰​🍯​🍫​🍷​
               </h5>
-              <p className="mb-3 font-semplicita text-black text-xl  ">
-                Vous retrouverez ici le meilleur de la gastronomie ardéchoise.{" "}
-                <br />
-                <br />A travers une multitude de produits proposés, à l’instar
-                de terrines, tartinades et autres légumes lacto-fermentés, vous
-                profiterez d’un large choix de condiments et de biscuits salés,
-                d’une variété de vins fins et de bières artisanales uniques.
+
+              <p className="mb-3 font-semplicita text-black text-xl">
+                Crèmes de marrons, miels, confitures, biscuits artisanaux,
+                terrines, sirops, boissons artisanales, vins, bières,
+                spiritueux, etc.
                 <br />
                 <br />
-                La partie sucrée n’est pas en reste avec un assortiment de
-                crèmes et purées de marron, de biscuits et autres gourmandises
-                sélectionnées avec soin auprès des meilleurs artisans Ardéchois.{" "}
+                Nous avons TOUT goûté pour ne vous proposer que le meilleur de
+                la gastronomie ardéchoise !
                 <br />
                 <br />
                 Si vous êtes à la recherche d'un cadeau original, notre épicerie
-                fine saura répondre à vos besoins.
+                fine saura répondre à vos besoins : oui parce qu’en Ardèche il
+                n’y a pas que du saucisson et des picodons ! Chocolat CRU,
+                biscuits au safran, pastis artisanal, bière au whisky… 😮
+                <br />
+                <br />
+                Saviez-vous que l’Ardèche était une terre fertile qui cultive
+                entre autres du safran ? 🌺
               </p>
             </div>
           </div>
@@ -200,25 +217,35 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start ">
-              <h5 className="lg:mb-28 mb-8 text-3xl font-larken tracking-tight text-black  ">
-                Traiteur{" "}
+              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-3xl font-larken tracking-tight text-black">
+                Traiteur
+                <br />
+                ​​👄​​🥘​🐽​​​​🍽️​
               </h5>
-              <p className="mb-3 font-semplicita text-black text-xl  ">
+
+              <p className="mb-3 font-semplicita text-black text-xl">
                 Nous vous proposons de découvrir à travers nos produits frais le
-                savoir-faire ancestral de nos producteurs, auprès desquels nous
+                savoir-faire ancestral de nos producteurs auprès desquels nous
                 nous fournissons directement.
                 <br />
                 <br />
-                Découvrez les authentiques caillettes ardéchoises mais aussi les
-                mini caillettes aux saveurs de saison inédites, les criques, le
-                grilloton, la jambonette et tout un assortiment de charcuterie
-                traditionnelle.
+                🧆 Retrouvez les authentiques caillettes ardéchoises (aux
+                blettes oui) et découvrez les mini caillettes aux saveurs de
+                saison (châtaigne, picodon/noix, truffe, foie gras, légumes
+                d’été, etc.)
                 <br />
+                🥔 Goûtez nos criques artisanales natures, aux cèpes, à la
+                carotte ou aux lardons fumés
                 <br />
-                Vous trouverez de plus un large choix de fromages emblématiques
-                de ce terroir Nous élaborons également des plateaux apéritifs
-                sur mesure pour tous vos évènements personnels et
-                professionnels.
+                🥓 Savourez notre jambonette, grilloton, saucisson et autres
+                charcuteries traditionnelles SANS NITRITE
+                <br />
+                ​🧀​ Vous trouverez aussi un large choix de fromages
+                emblématiques de notre terroir : caillés doux et picodons.
+                <br />
+                Avec tous ces produits, nous élaborons également des plateaux
+                apéritifs sur mesure pour tous vos évènements personnels et
+                professionnels ! ​​👌​
               </p>
             </div>
           </div>
@@ -232,18 +259,30 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start ">
-              <h5 className="lg:mb-28 mb-8 text-3xl font-larken tracking-tight text-black  ">
-                Petite restauration{" "}
+              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-3xl font-larken tracking-tight text-black">
+                Petite restauration
+                <br />
+                👨‍🍳🥗​🥖​​🍰​
               </h5>
-              <p className="mb-3 font-semplicita text-black text-xl ">
+
+              <p className="mb-3 font-semplicita text-black text-xl">
                 Pour la pause du midi, nous confectionnons de généreux sandwichs
                 fermiers et salades en utilisant les produits frais que nous
                 avons à notre disposition, au gré des saisons et de nos
-                inspirations. <br></br>
-                <br></br> Tout au long de la journée, nous vous proposons aussi
-                un assortiment de dessert maison traditionnels, comme la mousse
-                et le fondant à la chataîgne, nos delicieux pavés amandes à la
-                myrtille ou à la framboise ainsi que d’autres recettes d’antan.
+                inspirations.
+                <br />
+                Nous vous proposons encore des formules criques (accompagnées
+                d’une salade ou d’une soupe maison) et des assiettes ardéchoises
+                ​​​👩‍🍳​​
+                <br />
+                Tout au long de la journée, nous vous proposons aussi un
+                assortiment de desserts traditionnels faits maison comme : la
+                mousse et le fondant à la châtaigne, le flan aux œufs de Maria,
+                le tiramisu aux brisures de châtaignes, l’invisible aux pommes
+                et à la fleur d’oranger et d’autres moelleux de saison… ​​🥰​
+                <br />
+                <br />
+                SUR PLACE OU A EMPORTER
               </p>
             </div>
           </div>
@@ -267,13 +306,21 @@ function Main() {
               className="flex flex-col p-4 leading-normal text-center justify-start "
               id="salon"
             >
-              <h5 className="lg:mb-28 mb-8 text-3xl font-larken  tracking-tight text-black  ">
-                Salon de Maria{" "}
+              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-3xl font-larken tracking-tight text-black">
+                Le salon de Maria
+                <br />
+                ☕​🧁​🥄​🕓​
               </h5>
-              <p className="mb-3 font-semplicita text-black  text-xl">
-                Venez profitez d’une pause gourmande dans le salon de Maria à
-                toute heure de la journée, et découvrez nos sélections de thés,
-                cafés et autres boissons artisanales
+
+              <p className="mb-3 font-semplicita text-black text-xl">
+                A l’étage, le temps s’arrête. Ici vous êtes comme à la maison.
+                <br />
+                A toute heure de la journée, profitez d’une pause gourmande dans
+                le salon cosy de Maria.
+                <br />
+                Une boisson chaude (thés, cafés, tisanes), un jus artisanal
+                accompagné d’un dessert maison ou de biscuits de l’épicerie ?
+                Prenez du temps pour vous 🤍
               </p>
             </div>
           </div>

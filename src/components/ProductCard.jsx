@@ -13,6 +13,8 @@ function ProductCard({ product, addToCart }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedPictograms, setSelectedPictograms] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [uniqueSenteurKeys, setUniqueSenteurKeys] = useState([]);
+
   const [selectedSenteur, setSelectedSenteur] = useState(
     Array.isArray(product.senteurs) && product.senteurs.length > 0
       ? product.senteurs[0]
@@ -38,17 +40,48 @@ function ProductCard({ product, addToCart }) {
       Array.isArray(product.senteurs) &&
       product.senteurs.length > 0
     ) {
-      return product.senteurs.map((senteur, index) => {
-        const displayedSenteur = senteur.startsWith("SOLDOUT_")
-          ? senteur.substring(8)
-          : senteur;
+      return (
+        <>
+          <label
+            htmlFor={`senteur-${product.id}`}
+            className="text-gray-900 font-semplicita uppercase font-bold"
+          >
+            Choisissez une option :
+          </label>
+          <select
+            id={`senteur-${product.id}`}
+            className="ml-0 px-2 py-1 border rounded font-semplicita "
+            value={selectedSenteur}
+            onChange={(e) => setSelectedSenteur(e.target.value)}
+          >
+            {product.senteurs.map((senteur, index) => {
+              const senteurKey = isSenteurSoldOut(senteur)
+                ? `SOLDOUT_${product.id}_${index}_${senteur}`
+                : `${product.id}_${index}_${senteur}`;
 
-        return (
-          <span key={index} className="mr-2">
-            {displayedSenteur}
-          </span>
-        );
-      });
+              const displayedSenteur = isSenteurSoldOut(senteur)
+                ? `En rupture: ${senteur.substring(8)}`
+                : senteur;
+
+              if (!uniqueSenteurKeys.includes(senteurKey)) {
+                setUniqueSenteurKeys((prevKeys) => [...prevKeys, senteurKey]);
+
+                return (
+                  <option
+                    key={senteurKey}
+                    value={isSenteurSoldOut(senteur) ? null : senteur}
+                    disabled={isSenteurSoldOut(senteur)}
+                  >
+                    {displayedSenteur}
+                  </option>
+                );
+              }
+
+              return null;
+            })}
+          </select>
+        </>
+      );
     }
     return null;
   };

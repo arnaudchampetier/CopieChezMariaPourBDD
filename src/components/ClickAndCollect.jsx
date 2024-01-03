@@ -13,7 +13,6 @@ function ClicAndCollect({ cartItems, setCartItems }) {
     "Nos desserts maison (recettes de Maria)",
     "Traiteur",
     "Cave",
-    "NOËL",
     "Déco & Maison",
     "Hygiène",
     "Bébé",
@@ -26,6 +25,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
   const [subFamilyList, setSubFamilyList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [allProducts, setAllProducts] = useState([]);
+  const [uniqueSenteurKeys, setUniqueSenteurKeys] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -125,8 +125,11 @@ function ClicAndCollect({ cartItems, setCartItems }) {
       setSelectedFamily(finalProducts[0].famille);
     }
 
-    setProducts(finalProducts);
-  }, [searchTerm, allProducts, products]);
+    // Note: Ne mets à jour products ici que si le tableau finalProducts change
+    if (JSON.stringify(finalProducts) !== JSON.stringify(products)) {
+      setProducts(finalProducts);
+    }
+  }, [searchTerm, allProducts]); // Ne pas inclure "products" comme dépendance ici
 
   const addToCart = (product, selectedSenteur) => {
     // Copiez le panier actuel
@@ -284,6 +287,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
             key={product.id}
             product={product}
             addToCart={addToCart}
+            uniqueSenteurKeys={uniqueSenteurKeys}
           />
         ))}
       </div>

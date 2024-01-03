@@ -8,24 +8,49 @@ admin.initializeApp();
 
 exports.createPaymentIntent = functions.https.onRequest(async (req, res) => {
   try {
-    // Extrayez le nom du titulaire de la carte et l'adresse e-mail du corps de la demande
     const { cardholderName, email, totalAmount } = req.body;
-    console.log("Total amount received from front-end:", totalAmount); // Vérifiez que la valeur est correcte ici
 
-    // Créez un PaymentIntent avec Stripe
+    console.log("Request body:", req.body);
+    console.log("Cardholder Name:", cardholderName);
+    console.log("Email:", email);
+    console.log("Total amount received from front-end:", totalAmount);
+
+    // Ajout de la vérification de l'e-mail
+    const cleanedEmail = email.trim(); // supprimer les espaces avant et après
+    console.log("Cleaned Email:", cleanedEmail);
+
+    if (!isValidEmail(cleanedEmail)) {
+      console.error("Invalid email format");
+      return res.status(400).json({ error: "Invalid email format" });
+    }
+
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: totalAmount, // Montant en cents (par exemple, 10,00 $)
+      amount: totalAmount,
       currency: "eur",
       payment_method: "pm_card_visa",
       billing_details: {
         name: cardholderName,
-        email: email,
-        // Autres informations de facturation si nécessaire
+        email: cleanedEmail,
       },
     });
 
+    console.log("PaymentIntent created:", paymentIntent);
+
     res.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
+    console.error("Error in createPaymentIntent:", error);
+
+    if (error.response && error.response.data) {
+      console.error("Stripe Error Details:", error.response.data);
+    }
+
     res.status(500).json({ error: error.message });
   }
 });
+
+// Fonction pour vérifier le format de l'e-mail
+function isValidEmail(email) {
+  // Utilisez une expression régulière simple pour vérifier le format de l'e-mail
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}

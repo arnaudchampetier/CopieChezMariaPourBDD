@@ -27,7 +27,7 @@ function FindUs() {
             </h2>
             <p className="text-gray-700 text-sm md:text-2xl font-semplicita">
               21 Cours Vitton <br></br> 69006 Lyon <br></br>TEL : 06 76 71 67 54{" "}
-              <br></br>Lundi au Samedi : 10h30 – 19h30 <br></br>Dimanche : fermé
+              <br></br>Lundi au Samedi : 10h – 19h <br></br>Dimanche : fermé
             </p>
             <div className="flex justify-around ">
               <a href="https://www.instagram.com/chez.maria.lyon/">
