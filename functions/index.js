@@ -22,11 +22,10 @@ exports.createPaymentIntent = functions.https.onRequest((req, res) => {
     try {
       // Créez un PaymentIntent avec Stripe
       const customer = await stripe.customers.create({
-        email: "info@example.com ",
+        email: email,
       });
       const paymentIntent = await stripe.paymentIntents.create({
         customer: customer.id,
-        email: email,
         amount: totalAmount, // Montant en cents (par exemple, 10,00 $)
         currency: "eur",
         description: `Commande de ${cardholderName}`, // Description de la commande

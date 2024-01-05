@@ -68,8 +68,10 @@ const CheckoutForm = ({ cartItems }) => {
       } catch (error) {
         console.error("Error in handleFormSubmit:", error);
 
-        if (error.response && error.response.data) {
-          console.error("Stripe Error Details:", error.response.data);
+        if (error.response) {
+          console.error("Server Response:", error.response);
+        } else {
+          console.error("Unknown error. Check server logs for more details.");
         }
       }
     } else {
@@ -78,10 +80,6 @@ const CheckoutForm = ({ cartItems }) => {
       );
     }
   };
-
-  if (!cartItems || cartItems.length === 0) {
-    return <p>Aucun article dans le panier.</p>;
-  }
 
   const cardStyle = {
     style: {

@@ -25,7 +25,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
   const [subFamilyList, setSubFamilyList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [allProducts, setAllProducts] = useState([]);
-  const [uniqueSenteurKeys, setUniqueSenteurKeys] = useState([]);
+  const [uniqueSenteurKeys, setUniqueSenteurKeys] = useState({});
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -178,9 +178,9 @@ function ClicAndCollect({ cartItems, setCartItems }) {
         Nos produits en Click & Collect
       </h1>
       <div className="mb-12 flex flex-wrap justify-center items-center gap-2 xl:gap-6">
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <div
-            key={category}
+            key={index}
             className={`mb-2 xl:mb-0 cursor-pointer font-semplicita text-base xl:text-xl uppercase hover:text-red-400 ${
               selectedCategory === category ? "font-bold" : ""
             }`}
@@ -195,9 +195,9 @@ function ClicAndCollect({ cartItems, setCartItems }) {
         ))}
       </div>
       <div className="flex flex-wrap justify-center items-center mb-4 xl:mb-12">
-        {familyList.map((family) => (
+        {familyList.map((family, index) => (
           <div
-            key={family}
+            key={index}
             className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-larken  xl:text-xl ${
               selectedFamily === family ? "text-purple-700 " : ""
             }`}
@@ -231,9 +231,9 @@ function ClicAndCollect({ cartItems, setCartItems }) {
       )}
       {selectedFamily === "Vins" && (
         <div className="flex flex-wrap justify-center items-center mb-4 xl:mb-12">
-          {subFamilyList.map((subFamily) => (
+          {subFamilyList.map((subFamily, index) => (
             <div
-              key={subFamily}
+              key={index}
               className={`mb-2 xl:mb-0 mr-4 cursor-pointer xl:hover:text-red-600 font-cinzel xl:text-xl ${
                 selectedSubFamily === subFamily ? "text-purple-700 " : ""
               }`}
@@ -245,7 +245,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
         </div>
       )}
       {/* Barre de recherche globale */}
-      <div className="mb-4 flex items-center justify-center">
+      <div className="mb-4 flex items-center justify-center ">
         <label htmlFor="search" className="mr-2 font-semplicita text-xl">
           Recherchez un produit :
         </label>
@@ -284,9 +284,16 @@ function ClicAndCollect({ cartItems, setCartItems }) {
       <div className="flex flex-wrap -mx-4 font-semplicita ">
         {products.map((product) => (
           <ProductCard
-            key={product.id}
+            key={`${product.id}_${uniqueSenteurKeys[product.id]}`}
             product={product}
-            addToCart={addToCart}
+            addToCart={(product, selectedSenteur) => {
+              addToCart(product, selectedSenteur);
+              // Mettez à jour la clé unique après avoir ajouté la senteur
+              setUniqueSenteurKeys((prevKeys) => ({
+                ...prevKeys,
+                [product.id]: selectedSenteur,
+              }));
+            }}
             uniqueSenteurKeys={uniqueSenteurKeys}
           />
         ))}

@@ -8,12 +8,16 @@ import NP from "../assets/nature-et-progres.png";
 import Vegan from "../assets/veganlogo.png";
 import NoImage from "../assets/pasdimage.png";
 
-function ProductCard({ product, addToCart }) {
+function ProductCard({
+  product,
+  addToCart,
+  uniqueSenteurKeys,
+  setUniqueSenteurKeys,
+}) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedPictograms, setSelectedPictograms] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [uniqueSenteurKeys, setUniqueSenteurKeys] = useState([]);
 
   const [selectedSenteur, setSelectedSenteur] = useState(
     Array.isArray(product.senteurs) && product.senteurs.length > 0
@@ -59,12 +63,20 @@ function ProductCard({ product, addToCart }) {
                 ? `SOLDOUT_${product.id}_${index}_${senteur}`
                 : `${product.id}_${index}_${senteur}`;
 
-              const displayedSenteur = isSenteurSoldOut(senteur)
-                ? `En rupture: ${senteur.substring(8)}`
-                : senteur;
+              let displayedSenteur;
 
-              if (!uniqueSenteurKeys.includes(senteurKey)) {
-                setUniqueSenteurKeys((prevKeys) => [...prevKeys, senteurKey]);
+              if (isSenteurSoldOut(senteur)) {
+                displayedSenteur = `En rupture: ${senteur.substring(8)}`;
+              } else {
+                displayedSenteur = senteur;
+              }
+
+              // Vérifiez si la clé unique existe déjà pour ce produit
+              if (!uniqueSenteurKeys[product.id]) {
+                setUniqueSenteurKeys((prevKeys) => ({
+                  ...prevKeys,
+                  [product.id]: true, // Marquez la clé comme existante
+                }));
 
                 return (
                   <option
@@ -221,18 +233,25 @@ function ProductCard({ product, addToCart }) {
                   value={selectedSenteur}
                   onChange={(e) => setSelectedSenteur(e.target.value)}
                 >
-                  {product.senteurs.map((senteur) => {
-                    const senteurKey = `SOLDOUT_${senteur}`;
-                    const isSoldOut = senteur.startsWith("SOLDOUT_");
-                    const displayedSenteur = isSoldOut
-                      ? `En rupture: ${senteur.substring(8)}`
-                      : senteur;
+                  {product.senteurs.map((senteur, index) => {
+                    const senteurKey = isSenteurSoldOut(senteur)
+                      ? `SOLDOUT_${product.id}_${index}_${senteur}`
+                      : `${product.id}_${index}_${senteur}`;
+
+                    // Déclarez displayedSenteur avant de l'utiliser
+                    let displayedSenteur;
+
+                    if (isSenteurSoldOut(senteur)) {
+                      displayedSenteur = `En rupture: ${senteur.substring(8)}`;
+                    } else {
+                      displayedSenteur = senteur;
+                    }
 
                     return (
                       <option
                         key={senteurKey}
-                        value={isSoldOut ? null : senteur}
-                        disabled={isSoldOut}
+                        value={isSenteurSoldOut(senteur) ? null : senteur}
+                        disabled={isSenteurSoldOut(senteur)}
                       >
                         {displayedSenteur}
                       </option>

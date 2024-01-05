@@ -105,8 +105,8 @@ function Panier({ cartItems, setCartItems, updateQuantity, clearCart }) {
       ) : (
         <>
           <ul className="space-y-2">
-            {localCartItems.map((item) => (
-              <li key={item.id} className="flex justify-between items-center">
+            {localCartItems.map((item, index) => (
+              <li key={index} className="flex justify-between items-center">
                 <div className="flex justify-between items-center">
                   <div>
                     <span className="text-xl font-light font-semplicita italic">

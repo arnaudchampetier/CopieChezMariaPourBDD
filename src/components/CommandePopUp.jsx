@@ -50,9 +50,9 @@ function CommandePopUp({ isOpen, onClose, onConfirm, cartItems }) {
         <h3 className="text-xl font-larken mb-2 ">
           Récapitulatif de votre commande :
         </h3>
-        {cartItems.map((item) => (
+        {cartItems.map((item, index) => (
           <div
-            key={item.id}
+            key={index}
             className="flex justify-between mb-2 font-semplicita"
           >
             <span>

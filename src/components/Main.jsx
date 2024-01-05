@@ -180,7 +180,7 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start bg-navbar  lg:h-142 ">
-              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-3xl font-larken tracking-tight text-black">
+              <h5 className="lg:mb-12 mb-8 mt-8 lg:mt-18 text-3xl font-larken tracking-tight text-black">
                 Epicerie
                 <br />
                 🌰​🍯​🍫​🍷​
@@ -217,7 +217,7 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start ">
-              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-3xl font-larken tracking-tight text-black">
+              <h5 className="lg:mb-12 mb-8 mt-8 lg:mt-18 text-3xl font-larken tracking-tight text-black">
                 Traiteur
                 <br />
                 ​​👄​​🥘​🐽​​​​🍽️​
@@ -259,7 +259,7 @@ function Main() {
               alt=""
             />
             <div className="flex flex-col p-4 leading-normal text-center justify-start ">
-              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-3xl font-larken tracking-tight text-black">
+              <h5 className="lg:mb-12 mb-8 mt-8 lg:mt-18 text-3xl font-larken tracking-tight text-black">
                 Petite restauration
                 <br />
                 👨‍🍳🥗​🥖​​🍰​
@@ -306,7 +306,7 @@ function Main() {
               className="flex flex-col p-4 leading-normal text-center justify-start "
               id="salon"
             >
-              <h5 className="lg:mb-28 mb-8 mt-8 lg:mt-24 text-3xl font-larken tracking-tight text-black">
+              <h5 className="lg:mb-12 mb-8 mt-8 lg:mt-18 text-3xl font-larken tracking-tight text-black">
                 Le salon de Maria
                 <br />
                 ☕​🧁​🥄​🕓​
