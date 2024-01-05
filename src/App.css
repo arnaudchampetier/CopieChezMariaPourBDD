@@ -13,7 +13,7 @@
 
 @media (max-width: 400px) {
   .custom-sm-text {
-    font-size: 0.74rem; /* Correspond à la taille de police "sm" */
+    font-size: 0.7rem; /* Correspond à la taille de police "sm" */
   }
 }
 
@@ -116,7 +116,7 @@ span.active {
 /*  ajuster la hauteur des cartes Bougies */
 .bougies-card {
   height: 700px; /* Ajustement hauteur et largeyr pour les cartes Bougies */
-  width: 300px;
+  width: 270px;
 
   
 }

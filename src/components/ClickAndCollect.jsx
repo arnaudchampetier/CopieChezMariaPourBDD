@@ -129,7 +129,7 @@ function ClicAndCollect({ cartItems, setCartItems }) {
     if (JSON.stringify(finalProducts) !== JSON.stringify(products)) {
       setProducts(finalProducts);
     }
-  }, [searchTerm, allProducts]); // Ne pas inclure "products" comme dépendance ici
+  }, [searchTerm, allProducts, products]); // Ne pas inclure "products" comme dépendance ici
 
   const addToCart = (product, selectedSenteur) => {
     // Copiez le panier actuel
